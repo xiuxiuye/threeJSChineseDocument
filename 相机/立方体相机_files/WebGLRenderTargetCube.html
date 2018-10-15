@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!-- saved from url=(0061)http://techbrood.com/threejs/docs/api/cameras/CubeCamera.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<base href="../../">--><base href=".">
+		<script src="./list.js(1).下载"></script>
+		<script src="./page.js.下载"></script>
+		<link type="text/css" rel="stylesheet" href="./page.css">
+	<link href="./prettify.css" rel="stylesheet"><link href="./threejs.css" rel="stylesheet"><script src="./prettify.js.下载"></script></head>
+	<body>
+		<a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">3D对象(Object3D)</a> →
+
+		<h1>立方体相机（CubeCamera）</h1>
+
+		<div class="desc">创建6个远景相机并渲染到1个<a href="javascript:window.parent.goTo(&#39;WebGL渲染器目标(WebGLRenderTarget)Cube&#39;)" title="WebGL渲染器目标(WebGLRenderTarget)Cube">WebGL渲染器目标(WebGLRenderTarget)Cube</a>对象上。</div>
+
+		<h2>示例</h2>
+
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_materials_cubemap_dynamic" target="_blank">materials / cubemap / dynamic </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_materials_cubemap_dynamic2" target="_blank">materials / cubemap / dynamic2 </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_shading_physical" target="_blank">shading / physical </a></div>
+
+		<code class=" prettyprint"><span class="com">//创建立方体相机</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> cubeCamera </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">CubeCamera</span><span class="pun">(</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">100000</span><span class="pun">,</span><span class="pln"> </span><span class="lit">128</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln"> cubeCamera </span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//创建汽车</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> chromeMaterial </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">MeshLambertMaterial</span><span class="pun">(</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0xffffff</span><span class="pun">,</span><span class="pln"> envMap</span><span class="pun">:</span><span class="pln"> cubeCamera</span><span class="pun">.</span><span class="pln">renderTarget </span><span class="pun">}</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> car </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Mesh</span><span class="pun">(</span><span class="pln"> carGeometry</span><span class="pun">,</span><span class="pln"> chromeMaterial </span><span class="pun">);</span><span class="pln">
+scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln"> car </span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//更新渲染目标立方体</span><span class="pln">
+car</span><span class="pun">.</span><span class="pln">setVisible</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">false</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+cubeCamera</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">copy</span><span class="pun">(</span><span class="pln"> car</span><span class="pun">.</span><span class="pln">position </span><span class="pun">);</span><span class="pln">
+cubeCamera</span><span class="pun">.</span><span class="pln">updateCubeMap</span><span class="pun">(</span><span class="pln"> renderer</span><span class="pun">,</span><span class="pln"> scene </span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">//绘制场景</span><span class="pln">
+car</span><span class="pun">.</span><span class="pln">setVisible</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">true</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+renderer</span><span class="pun">.</span><span class="pln">render</span><span class="pun">(</span><span class="pln"> scene</span><span class="pun">,</span><span class="pln"> camera </span><span class="pun">);</span></code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>CubeCamera( <a href="javascript:window.parent.goTo(&#39;number&#39;)" title="number">near</a>, <a href="javascript:window.parent.goTo(&#39;number&#39;)" title="number">far</a>, <a href="javascript:window.parent.goTo(&#39;number&#39;)" title="number">cubeResolution</a> )</h3>
+		<div>
+		near -- 近裁剪面距离<br>
+		far -- 远裁剪面距离<br>
+		cubeResolution -- 设置立方体的宽度
+		</div>
+		<div>
+		构造1个包含6个<a href="javascript:window.parent.goTo(&#39;远景相机(PerspectiveCamera)&#39;)" title="远景相机(PerspectiveCamera)">PerspectiveCameras</a>的立方体相机，然后渲染到1个<a href="javascript:window.parent.goTo(&#39;WebGL渲染器立方体目标(WebGLRenderTargetCube)&#39;)" title="WebGL渲染器立方体目标(WebGLRenderTargetCube)">WebGL渲染器立方体目标(WebGLRenderTargetCube)</a>对象上。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+
+		<h3><a href="javascript:window.parent.goTo(&#39;CubeCamera.renderTarget&#39;)" target="_parent" title="CubeCamera.renderTarget" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;WebGLRenderTargetCube&#39;)" title="WebGLRenderTargetCube" id="renderTarget">renderTarget</a> </h3>
+		<div>
+		生成的立方体纹理。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+
+		<h3><a href="javascript:window.parent.goTo(&#39;CubeCamera.updateCubeMap&#39;)" target="_parent" title="CubeCamera.updateCubeMap" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="updateCubeMap">updateCubeMap</a> ( <a href="javascript:window.parent.goTo(&#39;WebGL渲染器(WebGLRenderer)&#39;)" title="WebGL渲染器(WebGLRenderer)">renderer</a>, <a href="javascript:window.parent.goTo(&#39;Scene&#39;)" title="Scene">scene</a> )</h3>
+		<div>
+		renderer -- 当前的WebGL渲染器<br>
+		scene -- 当前场景。
+		</div>
+		<div>
+		该方法用来更新渲染目标对象（renderTarget）。
+		</div>
+
+		<h2>源代码</h2>
+
+		<a href="https://github.com/mrdoob/three.js/blob/master/src/cameras/CubeCamera.js" target="_blank">src/cameras/CubeCamera.js</a>
+	
+
+</body></html>

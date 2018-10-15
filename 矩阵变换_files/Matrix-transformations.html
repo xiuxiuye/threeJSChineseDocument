@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<!-- saved from url=(0081)http://techbrood.com/threejs/docs/manual/introduction/Matrix-transformations.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<base href="../../">--><base href=".">
+		<script src="./list.js(1).下载"></script>
+		<script src="./page.js.下载"></script>
+		<link type="text/css" rel="stylesheet" href="./page.css">
+	<link href="./prettify.css" rel="stylesheet"><link href="./threejs.css" rel="stylesheet"><script src="./prettify.js.下载"></script></head>
+	<body>
+		<h1>矩阵变换（Matrix transformations）</h1>
+
+		<p>
+		Three.js 使用 <strong>matrices</strong> 来编码3D变换---位置平移（translations），旋转（rotations）和缩放（scaling）。每个 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">3D对象(Object3D)</a> 有一个 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).matrix&#39;)" title="3D对象(Object3D).matrix">matrix</a> 用来保存该对象的位置、旋转和缩放因子。本节说明如何变换对象。
+		</p>
+
+		<h2>快捷属性 和 <strong>matrixAutoUpdate</strong></h2>
+
+		有两个方法来完成对象的矩阵变换：
+		<ol>
+			<li>
+				修改对象的 位置（<strong>position</strong>）, 四元数（<strong>quaternion</strong>）, 和缩放（<strong>scale</strong>） 属性，然后交由Three.js来根据这些属性重新计算对象矩阵：
+				<code class=" prettyprint"><span class="kwd">object</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">copy</span><span class="pun">(</span><span class="pln">start_position</span><span class="pun">);</span><span class="pln">
+		</span><span class="kwd">object</span><span class="pun">.</span><span class="pln">quaternion</span><span class="pun">.</span><span class="pln">copy</span><span class="pun">(</span><span class="pln">quaternion</span><span class="pun">);</span></code>
+				缺省情况下，<strong>matrixAutoUpdate</strong> 属性被设置为 true，这样矩阵将会被自动重新计算。
+				如果对象是静止的，或者你想手动控制计算过程来获得更好的性能，你可以设置该属性为false：
+				<code class=" prettyprint"><span class="kwd">object</span><span class="pun">.</span><span class="pln">matrixAutoUpdate </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span></code>
+				在修改对象属性后，手动更新矩阵：
+				<code class=" prettyprint"><span class="kwd">object</span><span class="pun">.</span><span class="pln">updateMatrix</span><span class="pun">();</span></code>
+			</li>
+			<li>
+				直接修改对象的矩阵。<a href="javascript:window.parent.goTo(&#39;Matrix4&#39;)" title="Matrix4">Matrix4</a> 类有多个方法用来修改矩阵：
+				<code class=" prettyprint"><span class="kwd">object</span><span class="pun">.</span><span class="pln">matrix</span><span class="pun">.</span><span class="pln">setRotationFromQuaternion</span><span class="pun">(</span><span class="pln">quaternion</span><span class="pun">);</span><span class="pln">
+		</span><span class="kwd">object</span><span class="pun">.</span><span class="pln">matrix</span><span class="pun">.</span><span class="pln">setPosition</span><span class="pun">(</span><span class="pln">start_position</span><span class="pun">);</span><span class="pln">
+		</span><span class="kwd">object</span><span class="pun">.</span><span class="pln">matrixAutoUpdate </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">;</span></code>
+                <p class="info">注意，在这种情况下，<strong>matrixAutoUpdate</strong> <em>必须</em> 被设置为 <strong>false</strong>，并且你应该要确保 <em>不去</em> 调用 <strong>updateMatrix</strong>。 否则手动修改会被自动计算所覆盖。</p>
+			</li>
+		</ol>
+
+		<h2>对象和世界矩阵（Object and world matrices）</h2>
+		<p>
+		对象的矩阵属性（<a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).matrix&#39;)" title="3D对象(Object3D).matrix">matrix</a>）保存了该对象相对于其父对象 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).parent&#39;)" title="3D对象(Object3D).parent">parent</a> 的变换，要获取世界坐标的变换，你必须访问对象的世界矩阵属性（<a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).matrixWorld&#39;)" title="3D对象(Object3D).matrixWorld">3D对象(Object3D).matrixWorld</a>）。
+		</p>
+		<p>
+		当父对象或子对象发生变换时，你可以通过调用请求子对象的 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).updateMatrixWorld&#39;)" title="3D对象(Object3D).updateMatrixWorld">updateMatrixWorld</a> 方法来更新 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).matrixWorld&#39;)" title="3D对象(Object3D).matrixWorld">matrixWorld</a> 属性。
+		</p>
+
+		<h2>旋转和四元数（Rotation and Quaternion）</h2>
+		<p>
+		Three.js 提供了两种途径来表示3D旋转：<a href="javascript:window.parent.goTo(&#39;欧拉(Euler)&#39;)" title="欧拉(Euler)">Euler angles</a> and <a href="javascript:window.parent.goTo(&#39;四元数(Quaternion)&#39;)" title="四元数(Quaternion)">Quaternions</a>, 以及两者之间转换的方法。
+        欧拉角（Euler angles）容易遭遇一个所谓“万向节锁（gimbal lock）”的难题，也就是在某些特定点（类似于地球南北极极点），物体的坐标突变会导致某个维度的旋转变换失效。
+        具体的可以阅读（https://en.wikipedia.org/wiki/Gimbal_lock），这里不做详述。因此，对象旋转总是使用其四元数 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).quaternion&#39;)" title="3D对象(Object3D).quaternion">quaternion</a> 属性来保存。
+		</p>
+		<p class="info">
+		之前的版本包含一个 <strong>useQuaternion</strong> 属性，当设置为false时，将导致使用欧拉角方法来计算对象的 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).matrix&#39;)" title="3D对象(Object3D).matrix">matrix</a> 属性。该属性已经废弃。相反，我们应该使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).setRotationFromEuler&#39;)" title="3D对象(Object3D).setRotationFromEuler">setRotationFromEuler</a> 方法，该方法将更新四元数。
+		</p>
+
+	
+
+</body></html>

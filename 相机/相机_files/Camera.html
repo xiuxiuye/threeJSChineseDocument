@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)http://techbrood.com/threejs/docs/api/cameras/Camera.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<base href="../../">--><base href=".">
+		<script src="./list.js(1).下载"></script>
+		<script src="./page.js.下载"></script>
+		<link type="text/css" rel="stylesheet" href="./page.css">
+	<link href="./prettify.css" rel="stylesheet"><link href="./threejs.css" rel="stylesheet"><script src="./prettify.js.下载"></script></head>
+	<body>
+		<a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">3D对象(Object3D)</a> →
+
+		<h1>相机（Camera）</h1>
+
+		<div class="desc">相机的抽象基类。当我们构建新类型的相机时总是应该继承这个类。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>Camera()</h3>
+		<div>
+			构造器将初始化如下属性：matrixWorldInverse 和 projectionMatrix.
+
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Camera.matrixWorldInverse&#39;)" target="_parent" title="Camera.matrixWorldInverse" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Matrix4&#39;)" title="Matrix4" id="matrixWorldInverse">matrixWorldInverse</a> </h3>
+		<div>这是matrixWorld的逆矩阵。MatrixWorld包含相机的世界变换矩阵。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Camera.projectionMatrix&#39;)" target="_parent" title="Camera.projectionMatrix" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Matrix4&#39;)" title="Matrix4" id="projectionMatrix">projectionMatrix</a> </h3>
+		<div>投影变换矩阵。</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Camera.getWorldDirection&#39;)" target="_parent" title="Camera.getWorldDirection" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3" id="getWorldDirection">getWorldDirection</a> ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">vector</a> )</h3>
+		<div>
+		vector — (可选)<br>
+		<br>
+		该方法返回代表相机方向的一个在世界空间中的矢量。
+		</div>
+
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Camera.lookAt&#39;)" target="_parent" title="Camera.lookAt" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="lookAt">lookAt</a> ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">vector</a> )</h3>
+		<div>
+		vector — 观察点<br>
+		<br>
+		该函数设定相机在全局空间中的位置。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Camera.clone&#39;)" target="_parent" title="Camera.clone" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Camera&#39;)" title="Camera" id="clone">clone</a> ( <a href="javascript:window.parent.goTo(&#39;Camera&#39;)" title="Camera">camera</a> )</h3>
+		<div>
+		camera — 要克隆的相机<br>
+		<br>
+		返回一个相机的克隆。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		<a href="https://github.com/mrdoob/three.js/blob/master/src/cameras/Camera.js" target="_blank">src/cameras/Camera.js</a>
+	
+
+</body></html>

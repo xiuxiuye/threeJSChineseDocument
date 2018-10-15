@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<!-- saved from url=(0093)http://wow.techbrood.com/fiddle/26628?height=200&theme=embed&slug-id=26628&default-tab=result -->
+<html lang="zh-CN" class="pc"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="http://s.techbrood.com/themes/techbrood/image/favicon.ico" type="image/x-icon">
+    <title>Three.js中文文档在线教程 - 第一个程序-踏得网Web云开发平台</title>
+    <meta name="title" content="踏得网HTML5云开发平台">
+    <meta name="description" content="领先的HTML5云开发和作品展示平台,是在线学习和练习HTML5动画,CSS3动画,SVG动画和WebGL三维模型案例和教程的首选便捷开发工具。">
+    <meta name="keywords" content="HTML5代码,HTML5动画,CSS3动画,SVG动画,搜索引擎,作品展示,在线开发,在线调试,在线教程,代码分享,案例演示">
+    <style>
+    .hide {
+      display: none !important;
+    }
+    .embed-nav {
+    }
+    .embed-nav a {
+      color: #000000;
+    }
+    .embed-nav a.active {
+      background: #cccccc;
+      color: #000000;
+    }
+    .embed-nav a.active:after {
+      border-top-color: #cccccc;
+    }
+    .embed-nav .logo-wrap a {
+      color: #000000;
+    }
+    .embed-nav .td-embed-logo {
+      fill: #000000 !important;
+    }
+  </style>    
+    <script src="./hm.js(1).下载"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?8c68efa3648cdc01a3d8333e0becf3c7";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    <meta name="csrf-param" content="_csrf">
+<meta name="csrf-token" content="THVLby5PU2V5BAgpcQMLIhQvEwx8fBIDfzQsBGIWOhF1ORkjXSkxCQ==">
+<link href="./embed.css" rel="stylesheet" position="1">
+<link href="./cm-twilight.css" rel="stylesheet" position="1">    
+	</head>
+
+	<body onload="resizeEmbedWindow();" id="the-body" style="height: 200px;">
+    		<!-- header -->
+		<!-- header.end -->
+        
+		<!-- main-body:content -->
+        <div id="content">
+            <div class="embed-nav group" id="embed-nav">
+  <ul>
+    <li>
+      <a id="html-link" href="http://wow.techbrood.com/fiddle/26628?height=200&amp;theme=embed&amp;slug-id=26628&amp;default-tab=result#html-box" class="">
+        HTML
+      </a>
+    </li>
+
+    <li>
+      <a id="css-link" href="http://wow.techbrood.com/fiddle/26628?height=200&amp;theme=embed&amp;slug-id=26628&amp;default-tab=result#css-box" class="">
+        CSS
+      </a>
+    </li>
+
+    <li>
+      <a id="js-link" href="http://wow.techbrood.com/fiddle/26628?height=200&amp;theme=embed&amp;slug-id=26628&amp;default-tab=result#js-box" class="">
+        JS
+      </a>    
+    </li>
+
+    <li>
+      <a id="result-link" href="http://wow.techbrood.com/fiddle/26628?height=200&amp;theme=embed&amp;slug-id=26628&amp;default-tab=result#result-box" class="active">
+        Result
+      </a>
+    </li>
+  </ul>
+
+  <div class="logo-wrap" id="edit-area">
+    <a target="_blank" href="http://wow.techbrood.com/fiddle/26628" title="Edit on Techbrood">
+      <i class="edit_on_techbrood"></i>编辑
+    </a>
+  </div> 
+</div>
+<div id="output" data-border-style="none" data-header="true" style="height: 166px;">
+    <div id="html-box" class="code-box box ">
+      <pre class=""><code data-lang="xml" id="actual-html-code" data-og-lang="html" data-alt-lang="html" class=" cm-s-default cm-s-default"><span class="cm-meta">&lt;!DOCTYPE html&gt;</span><br><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">html</span><span class="cm-tag cm-bracket">&gt;</span><br><br><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">head</span><span class="cm-tag cm-bracket">&gt;</span><br>    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">meta</span> <span class="cm-attribute">charset</span>=<span class="cm-attribute">utf-8</span><span class="cm-tag cm-bracket cm-error">&gt;</span><br>    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">title</span><span class="cm-tag cm-bracket">&gt;</span>Three.js中文文档在线教程 - 第一个程序<span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">title</span><span class="cm-tag cm-bracket">&gt;</span><br>    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">style</span><span class="cm-tag cm-bracket">&gt;</span><br>        body {<br>            margin: 0;<br>        }<br>        canvas {<br>            width: 100%;<br>            height: 100%;<br>        }<br>    <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">style</span><span class="cm-tag cm-bracket">&gt;</span><br><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag cm-error">head</span><span class="cm-tag cm-bracket cm-error">&gt;</span><br><br><span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">body</span><span class="cm-tag cm-bracket">&gt;</span><br>    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span> <span class="cm-attribute">src</span>=<span class="cm-string">"/libs/three.min.js"</span><span class="cm-tag cm-bracket">&gt;</span><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span><br>    <span class="cm-tag cm-bracket">&lt;</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span><br>        // Our Javascript will go here.<br>        var scene = new THREE.Scene();<br>        var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);<br><br>        var renderer = new THREE.WebGLRenderer();<br>        renderer.setSize(window.innerWidth, window.innerHeight);<br>        document.body.appendChild(renderer.domElement);<br><br>        var geometry = new THREE.BoxGeometry(1, 1, 1);<br>        var material = new THREE.MeshBasicMaterial({<br>            color: 0x00ff00<br>        });<br>        var cube = new THREE.Mesh(geometry, material);<br>        scene.add(cube);<br><br>        camera.position.z = 5;<br><br>        var render = function() {<br>            requestAnimationFrame(render);<br><br>            cube.rotation.x += 0.1;<br>            cube.rotation.y += 0.1;<br><br>            renderer.render(scene, camera);<br>        };<br><br>        render();<br>    <span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">script</span><span class="cm-tag cm-bracket">&gt;</span><br><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag">body</span><span class="cm-tag cm-bracket">&gt;</span><br><br><span class="cm-tag cm-bracket">&lt;/</span><span class="cm-tag cm-error">html</span><span class="cm-tag cm-bracket cm-error">&gt;</span></code></pre>
+    </div>    
+    <div id="css-box" class="code-box box ">
+      <pre class=""><code data-lang="css" id="actual-css-code" data-og-lang="css" data-alt-lang="css" class=" cm-s-default cm-s-default"></code></pre>
+    </div>
+
+    <div id="js-box" class="code-box box ">
+      <pre class=""><code data-lang="" id="actual-js-code" data-og-lang="" data-alt-lang="javascript" class=" cm-s-default cm-s-default"><span class="cm-comment">/* Read more on：</span><br><span class="cm-comment">http://techbrood.com/threejs/docs */</span></code></pre>
+    </div>
+
+    <div id="result-box" class="code-box active">
+      <iframe id="result-iframe" sandbox="allow-scripts allow-pointer-lock allow-same-origin allow-popups allow-forms" src="./26628(1).html" allowtransparency="true" frameborder="0" scrolling="yes" allowfullscreen="true" name="Techbrood Preview for Three.js中文文档在线教程 - 第一个程序" title="Techbrood Preview for Three.js中文文档在线教程 - 第一个程序">
+      </iframe>
+      <a href="http://wow.techbrood.com/fiddle/26628?height=200&amp;theme=embed&amp;slug-id=26628&amp;default-tab=result#0" id="rerun-button" class="action-button rerun-button" onclick="Embed.refreshResultIFrame(); return false;">
+        运行
+      </a>
+    </div>
+</div>
+<script> //define global variables
+    __processedPen = {"html":"","css":"","js":""};
+    __preprocessors = {
+      "html": "HTML",
+      "css":  "",
+      "js":   ""
+    };    
+</script>
+
+           </div>
+		<!-- main-body:content.end -->
+        
+		<!-- footer -->
+		<!-- footer.end -->
+    <script src="./main.js(1).下载"></script>	
+
+</body></html>

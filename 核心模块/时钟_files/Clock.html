@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://techbrood.com/threejs/docs/api/core/Clock.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<base href="../../">--><base href=".">
+		<script src="./list.js(1).下载"></script>
+		<script src="./page.js.下载"></script>
+		<link type="text/css" rel="stylesheet" href="./page.css">
+	<link href="./prettify.css" rel="stylesheet"><link href="./threejs.css" rel="stylesheet"><script src="./prettify.js.下载"></script></head>
+	<body>
+		<h1>时钟（Clock）</h1>
+
+		<div class="desc">跟踪时间的对象。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>Clock( <a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean">autoStart</a> )</h3>
+		<div>
+		autoStart — 用来初始化autoStart属性，表示是否自动启动时钟。默认是true。
+		</div>
+
+		<h2>属性（Properties）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Clock.autoStart&#39;)" target="_parent" title="Clock.autoStart" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="autoStart">autoStart</a> </h3>
+		<div>
+		如果设置为true，当第一次更新被调用时，自动启动时钟。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Clock.startTime&#39;)" target="_parent" title="Clock.startTime" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="startTime">startTime</a> </h3>
+		<div>
+		当时钟运行时，该属性用来保存时钟的起始时间。<br>
+		这个是从1 January 1970 00:00:00 UTC开始的毫秒数。
+ 		</div>
+
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Clock.oldTime&#39;)" target="_parent" title="Clock.oldTime" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="oldTime">oldTime</a> </h3>
+		<div>
+		当时钟运行时，该属性用来保存最近一次更新的时间。<br>
+		这个是从1 January 1970 00:00:00 UTC开始的毫秒数。
+ 		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Clock.elapsedTime&#39;)" target="_parent" title="Clock.elapsedTime" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="elapsedTime">elapsedTime</a> </h3>
+		<div>
+		当时钟运行时，该属性用来保存起始时间和最近一次更新时间之间的时间间隔。<br>
+		这个是从1 January 1970 00:00:00 UTC开始的毫秒数。
+ 		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Clock.running&#39;)" target="_parent" title="Clock.running" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="running">running</a> </h3>
+		<div>
+		这个属性跟踪时钟是否正在运行。
+ 		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Clock.start&#39;)" target="_parent" title="Clock.start" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="start">start</a> ()</h3>
+		<div>
+		启动时钟。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Clock.stop&#39;)" target="_parent" title="Clock.stop" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="stop">stop</a> ()</h3>
+		<div>
+		停止时钟。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Clock.getElapsedTime&#39;)" target="_parent" title="Clock.getElapsedTime" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="getElapsedTime">getElapsedTime</a> ()</h3>
+		<div>
+		获取时钟已运行时间。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Clock.getDelta&#39;)" target="_parent" title="Clock.getDelta" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="getDelta">getDelta</a> ()</h3>
+		<div>
+		获取时钟增量，也就是该函数本次调用和上次调用之间的时间间隔。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		<a href="https://github.com/mrdoob/three.js/blob/master/src/core/Clock.js" target="_blank">src/core/Clock.js</a>
+	
+
+</body></html>

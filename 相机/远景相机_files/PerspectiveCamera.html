@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)http://techbrood.com/threejs/docs/api/cameras/PerspectiveCamera.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<base href="../../">--><base href=".">
+		<script src="./list.js(1).下载"></script>
+		<script src="./page.js.下载"></script>
+		<link type="text/css" rel="stylesheet" href="./page.css">
+	<link href="./prettify.css" rel="stylesheet"><link href="./threejs.css" rel="stylesheet"><script src="./prettify.js.下载"></script></head>
+	<body>
+		<a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">3D对象(Object3D)</a> → <a href="javascript:window.parent.goTo(&#39;Camera&#39;)" title="Camera">Camera</a> →
+
+		<h1>远景相机（PerspectiveCamera）</h1>
+
+		<div class="desc">进行远景投影的相机。</div>
+        <p>远景投影，也称之为透视投影。这个是我们人眼观察世界的模式，远景投影相机示意图如下：</p>
+        <p><img src="./1464141326848754.png"></p>
+        <p>参考阅读本站<a href="http://techbrood.com/zh/news/html5/webgl%E5%85%A5%E9%97%A8%E6%95%99%E7%A8%8B1---3d%E7%BB%98%E5%9B%BE%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86_2.html">WebGL基础教程-3d绘图基础知识</a>。</p>
+        <h2>示例</h2>
+
+		<div><a href="http://techbrood.com/threejs/examples/#canvas_geometry_birds" target="_blank">geometry / birds </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#canvas_geometry_cube" target="_blank">geometry / cube </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_animation_skinning_blending" target="_blank">animation / skinning / blending </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_animation_skinning_morph" target="_blank">animation / skinning / blending </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_effects_stereo" target="_blank">effects / stereo </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_interactive_cubes" target="_blank">interactive / cubes </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_loader_collada_skinning" target="_blank">loader / collada / skinning </a></div>
+
+		<code class=" prettyprint"><span class="kwd">var</span><span class="pln"> camera </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">PerspectiveCamera</span><span class="pun">(</span><span class="pln"> </span><span class="lit">45</span><span class="pun">,</span><span class="pln"> width </span><span class="pun">/</span><span class="pln"> height</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1000</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln"> camera </span><span class="pun">);</span></code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>PerspectiveCamera( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">fov</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">aspect</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">near</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">far</a> )</h3>
+		<div>
+		fov — 相机视锥体垂直视角<br>
+		aspect — 相机视锥体宽高比<br>
+		near — 相机视锥体近裁剪面<br>
+		far — 相机视锥体远裁剪面。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.fov&#39;)" target="_parent" title="PerspectiveCamera.fov" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="fov">fov</a> </h3>
+		<div>相机视锥体垂直视角，从下到上的观察角度。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.zoom&#39;)" target="_parent" title="PerspectiveCamera.zoom" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;number&#39;)" title="number" id="zoom">zoom</a> </h3>
+		<div>获取或设置相机缩放因子（zoom factor）。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.near&#39;)" target="_parent" title="PerspectiveCamera.near" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="near">near</a> </h3>
+		<div>相机视锥体近裁剪面。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.far&#39;)" target="_parent" title="PerspectiveCamera.far" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="far">far</a> </h3>
+		<div>相机视锥体远裁剪面。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.focus&#39;)" target="_parent" title="PerspectiveCamera.focus" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="focus">focus</a> </h3>
+		<div>焦点，用于立体视觉和场深度效果的目标距离。这个参数不影响投影矩阵，除非是使用立体摄影机。这个参数不影响投影矩阵，除非是使用立体摄影机。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.aspect&#39;)" target="_parent" title="PerspectiveCamera.aspect" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="aspect">aspect</a> </h3>
+		<div>相机视锥体宽高比，等于窗口宽度除以窗口高度。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.view&#39;)" target="_parent" title="PerspectiveCamera.view" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Object&#39;)" title="Object" id="view">view</a> </h3>
+		<div>视椎体窗口规格或null。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.filmGauge&#39;)" target="_parent" title="PerspectiveCamera.filmGauge" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="filmGauge">filmGauge</a> </h3>
+		<div>用于较大坐标轴的胶片尺寸。默认为35（毫米）。这个参数不影响投影矩阵，除非.filmOffset设置为非零值。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.filmOffset&#39;)" target="_parent" title="PerspectiveCamera.filmOffset" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="filmOffset">filmOffset</a> </h3>
+		<div>水平偏离中心偏移量，和.filmGauge同单位。</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.getEffectiveFOV&#39;)" target="_parent" title="PerspectiveCamera.getEffectiveFOV" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="getEffectiveFOV">getEffectiveFOV</a> ()</h3>
+		<div>
+		返回考虑了缩放系数 .zoom 的当前视角，单位为角度（°）。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.getFocalLength&#39;)" target="_parent" title="PerspectiveCamera.getFocalLength" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="getFocalLength">getFocalLength</a> ()</h3>
+		<div>
+		返回当前和 .filmGauge 有关的 .fov 的焦距。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.getFilmWidth&#39;)" target="_parent" title="PerspectiveCamera.getFilmWidth" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="getFilmWidth">getFilmWidth</a> ()</h3>
+		<div>
+		返回胶片上图像的宽度。如果 .aspect 大于等于1（景观格式（landscape format）），则结果等于 .filmGauge。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.getFilmHeight&#39;)" target="_parent" title="PerspectiveCamera.getFilmHeight" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="getFilmHeight">getFilmHeight</a> ()</h3>
+		<div>
+		返回胶片上图像的高度。如果 .aspect 小于等于1（肖像格式（portrait format）），则结果等于 .filmGauge。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.setFocalLength&#39;)" target="_parent" title="PerspectiveCamera.setFocalLength" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="setFocalLength">setFocalLength</a> ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">focalLength</a> )</h3>
+		<div>
+		设置当前和 .filmGauge 有关的 .fov 的焦距。
+		</div>
+		<div>
+		默认情况下，焦距为35mm（全幅）相机指定。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.setLens&#39;)" target="_parent" title="PerspectiveCamera.setLens" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="setLens">setLens</a> ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">focalLength</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">filmGauge</a> )</h3>
+		<div>
+		focalLength — 焦距（focal length）<br>
+		frameGauge — 胶片尺寸（film gauge）
+		</div>
+
+		<div>
+		通过焦距设置 .fov 。也可以通过可选参数设置 .filmGauge。
+        <p class="info">该方法已废弃，请使用 .setFocalLength 来替代。</p>
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.setViewOffset&#39;)" target="_parent" title="PerspectiveCamera.setViewOffset" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="setViewOffset">setViewOffset</a> ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">fullWidth</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">fullHeight</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">x</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">y</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">width</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">height</a> )</h3>
+		<div>
+		fullWidth — 多视图设置的全宽<br>
+		fullHeight — 多视图设置的全高<br>
+		x — 副摄像头的水平偏移<br>
+		y — 副摄像头的垂直偏移<br>
+		width — 副摄像头宽度<br>
+		height — 副摄像头高度
+		</div>
+
+		<div>
+		该方法用于在一个较大的视椎体中设置视图偏移。这对于多窗口或多监视器/多机设置是有用的。
+		</div>
+
+		<div>
+		比如，如果你有一组 3x2 显示屏，每个屏幕分辨率为 1920x1080，显示屏位于一个网格中，如下所示：<br>
+
+		<pre>+---+---+---+
+| A | B | C |
++---+---+---+
+| D | E | F |
++---+---+---+</pre>
+
+		然后对于每个显示屏，你将像下面这样调用：<br>
+
+		<code class=" prettyprint"><span class="kwd">var</span><span class="pln"> w </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1920</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> h </span><span class="pun">=</span><span class="pln"> </span><span class="lit">1080</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> fullWidth </span><span class="pun">=</span><span class="pln"> w </span><span class="pun">*</span><span class="pln"> </span><span class="lit">3</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> fullHeight </span><span class="pun">=</span><span class="pln"> h </span><span class="pun">*</span><span class="pln"> </span><span class="lit">2</span><span class="pun">;</span><span class="pln">
+
+</span><span class="com">// A</span><span class="pln">
+camera</span><span class="pun">.</span><span class="pln">setViewOffset</span><span class="pun">(</span><span class="pln"> fullWidth</span><span class="pun">,</span><span class="pln"> fullHeight</span><span class="pun">,</span><span class="pln"> w </span><span class="pun">*</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">*</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> w</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">);</span><span class="pln">
+</span><span class="com">// B</span><span class="pln">
+camera</span><span class="pun">.</span><span class="pln">setViewOffset</span><span class="pun">(</span><span class="pln"> fullWidth</span><span class="pun">,</span><span class="pln"> fullHeight</span><span class="pun">,</span><span class="pln"> w </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">*</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> w</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">);</span><span class="pln">
+</span><span class="com">// C</span><span class="pln">
+camera</span><span class="pun">.</span><span class="pln">setViewOffset</span><span class="pun">(</span><span class="pln"> fullWidth</span><span class="pun">,</span><span class="pln"> fullHeight</span><span class="pun">,</span><span class="pln"> w </span><span class="pun">*</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">*</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> w</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">);</span><span class="pln">
+</span><span class="com">// D</span><span class="pln">
+camera</span><span class="pun">.</span><span class="pln">setViewOffset</span><span class="pun">(</span><span class="pln"> fullWidth</span><span class="pun">,</span><span class="pln"> fullHeight</span><span class="pun">,</span><span class="pln"> w </span><span class="pun">*</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> w</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">);</span><span class="pln">
+</span><span class="com">// E</span><span class="pln">
+camera</span><span class="pun">.</span><span class="pln">setViewOffset</span><span class="pun">(</span><span class="pln"> fullWidth</span><span class="pun">,</span><span class="pln"> fullHeight</span><span class="pun">,</span><span class="pln"> w </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> w</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">);</span><span class="pln">
+</span><span class="com">// F</span><span class="pln">
+camera</span><span class="pun">.</span><span class="pln">setViewOffset</span><span class="pun">(</span><span class="pln"> fullWidth</span><span class="pun">,</span><span class="pln"> fullHeight</span><span class="pun">,</span><span class="pln"> w </span><span class="pun">*</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">*</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> w</span><span class="pun">,</span><span class="pln"> h </span><span class="pun">);</span></code>
+
+		注意，没有任何理由在一个网格中的显示屏必须具备同样的尺寸。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.clearViewOffset&#39;)" target="_parent" title="PerspectiveCamera.clearViewOffset" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="clearViewOffset">clearViewOffset</a> ()</h3>
+		<div>
+		清除视图偏移。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.updateProjectionMatrix&#39;)" target="_parent" title="PerspectiveCamera.updateProjectionMatrix" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="updateProjectionMatrix">updateProjectionMatrix</a> ()</h3>
+		<div>
+		更新相机投影矩阵，必须在参数发生变化后调用。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.clone&#39;)" target="_parent" title="PerspectiveCamera.clone" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;PerspectiveCamera&#39;)" title="PerspectiveCamera" id="clone">clone</a> ()</h3>
+		<div>
+		<br>
+		返回一个 PerspectiveCamera 对象的克隆。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;PerspectiveCamera.toJSON&#39;)" target="_parent" title="PerspectiveCamera.toJSON" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;JSON&#39;)" title="JSON" id="toJSON">toJSON</a> ()</h3>
+		<div>
+		把相机数据转换成JSON格式。
+		</div>
+
+		<h2>源代码</h2>
+
+		<a href="https://github.com/mrdoob/three.js/blob/master/src/cameras/PerspectiveCamera.js" target="_blank">src/cameras/PerspectiveCamera.js</a>
+	
+
+</body></html>

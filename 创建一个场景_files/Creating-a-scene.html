@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<!-- saved from url=(0075)http://techbrood.com/threejs/docs/manual/introduction/Creating-a-scene.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<base href="../../">--><base href=".">
+		<script src="./list.js(1).下载"></script>
+		<script src="./page.js.下载"></script>
+        <script type="text/javascript" src="./embed.js.下载"></script>
+		<link type="text/css" rel="stylesheet" href="./page.css">
+	<link href="./prettify.css" rel="stylesheet"><link href="./threejs.css" rel="stylesheet"><script src="./prettify.js.下载"></script></head>
+	<body>
+		<h1>创建一个场景(Creating a scene)</h1><br>
+		
+        <div>本节的目的是介绍Three.js。我们将建立一个场景和一个旋转的立方体。文章最后附有源代码。</div>
+
+		<h2>准备工作</h2>
+
+		<div>和任何编程一样，我们首先要准备开发环境。我们将借助<a href="http://wow.techbrood.com/fiddle/new" target="_blank">踏得网在线开发平台</a>来完成，
+        把如下代码复制到新建作品的<strong>HTML面板</strong>中：</div>
+
+		<code class=" prettyprint"><span class="dec">&lt;!DOCTYPE html&gt;</span><span class="pln">
+</span><span class="tag">&lt;html&gt;</span><span class="pln">
+	</span><span class="tag">&lt;head&gt;</span><span class="pln">
+		</span><span class="tag">&lt;meta</span><span class="pln"> </span><span class="atn">charset</span><span class="pun">=</span><span class="atv">utf-8</span><span class="tag">&gt;</span><span class="pln">
+		</span><span class="tag">&lt;title&gt;</span><span class="pln">My first Three.js app</span><span class="tag">&lt;/title&gt;</span><span class="pln">
+		</span><span class="tag">&lt;style&gt;</span><span class="pln">
+			body </span><span class="pun">{</span><span class="pln"> margin</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> </span><span class="pun">}</span><span class="pln">
+			canvas </span><span class="pun">{</span><span class="pln"> width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%;</span><span class="pln"> height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">}</span><span class="pln">
+		</span><span class="tag">&lt;/style&gt;</span><span class="pln">
+	</span><span class="tag">&lt;/head&gt;</span><span class="pln">
+	</span><span class="tag">&lt;body&gt;</span><span class="pln">
+		</span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"/libs/three.r73.js"</span><span class="tag">&gt;&lt;/script&gt;</span><span class="pln">
+		</span><span class="tag">&lt;script&gt;</span><span class="pln">
+			</span><span class="com">// Our Javascript will go here.</span><span class="pln">
+		</span><span class="tag">&lt;/script&gt;</span><span class="pln">
+	</span><span class="tag">&lt;/body&gt;</span><span class="pln">
+</span><span class="tag">&lt;/html&gt;</span></code>
+
+		<div>你可以点击<strong>[运行]</strong>菜单（或按<strong>CTRL+R</strong>快捷键），当然我们还没有编写任何JS代码，所以预览窗口现在什么都没有。</div>
+
+		<h2>创建一个场景</h2>
+
+		<div>如果你学习过本站WebGL程序，你应该了解创建一个WebGL程序，你基本上需要4个步骤：
+            <ul>
+              <li>初始化WebGL绘图上下文</li>
+              <li>初始化着色器程序</li>
+              <li>建立模型和数据缓存</li>
+              <li>完成绘制和动画</li>
+            </ul>
+            这基本是一种过程式编程，而Three.js则不尽相同，其使用面向对象的方式来构建程序，包含3个基本对象：
+            <strong>场景（scene）</strong>, <strong>相机（camera）</strong>, 以及一个<strong>渲染器（renderer）</strong>。
+            拿电影来类比的话，场景对应于整个布景空间，相机是拍摄镜头，渲染器用来把拍摄好的场景转换成胶卷（对于网页来讲，是电脑屏幕）。
+            场景和相机代表了3D观察空间和数据模型，渲染器则包含了WebGL绘图上下文和着色器。
+        </div>
+		<code class=" prettyprint"><span class="kwd">var</span><span class="pln"> scene </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Scene</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> camera </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">PerspectiveCamera</span><span class="pun">(</span><span class="pln"> </span><span class="lit">75</span><span class="pun">,</span><span class="pln"> window</span><span class="pun">.</span><span class="pln">innerWidth </span><span class="pun">/</span><span class="pln"> window</span><span class="pun">.</span><span class="pln">innerHeight</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1000</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> renderer </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">WebGLRenderer</span><span class="pun">();</span><span class="pln">
+renderer</span><span class="pun">.</span><span class="pln">setSize</span><span class="pun">(</span><span class="pln"> window</span><span class="pun">.</span><span class="pln">innerWidth</span><span class="pun">,</span><span class="pln"> window</span><span class="pun">.</span><span class="pln">innerHeight </span><span class="pun">);</span><span class="pln">
+document</span><span class="pun">.</span><span class="pln">body</span><span class="pun">.</span><span class="pln">appendChild</span><span class="pun">(</span><span class="pln"> renderer</span><span class="pun">.</span><span class="pln">domElement </span><span class="pun">);</span></code>
+
+		<div>上面的代码构建了scene, camera 和 renderer。Three.js的架构支持多种camera，这里使用最常见的远景相机（PerspectiveCamera），也就是类似于人眼观察的方式。第一个属性75设置的是<strong>视角（field of view）</strong>。</div>
+
+		<div>第二个属性设置的是相机拍摄面的<strong>长宽比（aspect ratio）</strong>。我们几乎总是会使用元素的宽除以高，否则会出现挤压变形。</div>
+
+		<div>接下来的2个属性是<strong>近裁剪面（near clipping plane）</strong> 和 <strong>远裁剪面（far clipping plane）</strong>。下面这张图可以帮助你理解：</div>
+        <p><img src="./1464141326848754.png"></p>
+        <div>这几个参数所限定的绿色3D空间被称之为视椎体（View Frustum），用来裁剪视图，在该视锥体以外的物体将不会被渲染。我们暂时可以先不管，但你需要了解这个空间和渲染性能有关。</div>
+
+		<div>接下来是渲染器，所有魔法效果都在这里产生。除了我们这里使用的WebGLRenderer，three.js还支持一些其它渲染器，基本上只是用来回退处理那些不支持WebGL的旧式用户浏览器。</div>
+
+		<div>除了创建renderer实例，我们还需要设置渲染空间的尺寸，一般就使用目标屏幕的宽高（window.innerWidth和window.innerHeight），也可以给定一个小尺寸。</div>
+
+		<div>如果你想保持渲染空间的尺寸，但使用一个较低的分辨率，你可以在调用<strong>setSize</strong>的时候设置参数<strong>updateStyle</strong>为false，比如 <strong>setSize(window.innerWidth/2, window.innerHeight/2, false)</strong> 将使用1/2分辨率来绘制你的应用程序，假定&lt;canvas&gt;为100%的宽高。</div>
+
+		<div>最后，我们把 <strong>renderer</strong> 元素添加到HTML文档中。这里是一个 &lt;canvas&gt; 元素，渲染器用来显示场景。</div>
+
+		<div>上面的都是准备工作，电影布景都好了，演员还没进场。接下来我们添加“演员”（3D立方体）。</div>
+
+		<code class=" prettyprint"><span class="kwd">var</span><span class="pln"> geometry </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">BoxGeometry</span><span class="pun">(</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> material </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">MeshBasicMaterial</span><span class="pun">(</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00ff00</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> cube </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Mesh</span><span class="pun">(</span><span class="pln"> geometry</span><span class="pun">,</span><span class="pln"> material </span><span class="pun">);</span><span class="pln">
+scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln"> cube </span><span class="pun">);</span><span class="pln">
+
+camera</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">z </span><span class="pun">=</span><span class="pln"> </span><span class="lit">5</span><span class="pun">;</span></code>
+
+		<div>为了创建一个立方体，我们需要使用<strong>盒子模型（BoxGeometry）</strong>，这是一个包含立方体所有顶点和填充面的对象。</div>
+
+		<div>除了这个几何模型（geometry）外，我们还需要一个材料（material）来对其着色。Three.js支持多种材料，现在我们只使用 <strong>网孔基础材料（MeshBasicMaterial）</strong>。
+        所有材料都含有一个属性对象。这里简单起见，我们只提供了颜色值为<strong>0x00ff00</strong>，表示绿色。这和CSS和Photoshop中16进制颜色值一样。</div>
+
+		<div>第3件事是我们需要一个<strong>网孔(Mesh)</strong>。网孔是用来承载几何模型的一个对象，还可以把材料应用到它上面，然后添加到场景中完成旋转动画。</div>
+
+		<div>默认情况下，当我们调用 <strong>scene.add()</strong> 时，对象将被添加到原点处，即坐标点<strong>(0,0,0)</strong>，这将导致相机和立方体发生空间重叠。为了避免这样，我们把相机（camera）的位置移出来一些。</div>
+
+		<h2>渲染场景（Rendering the scene）</h2>
+
+		<div>如果你在新建作品中拷贝了前述的代码，并点击[运行]，你还是看不到任何东西，因为我们还没有实际去渲染它。为此，我们需要一个 <strong>渲染循环（render loop）</strong>。</div>
+
+		<code class=" prettyprint"><span class="kwd">function</span><span class="pln"> render</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+	requestAnimationFrame</span><span class="pun">(</span><span class="pln"> render </span><span class="pun">);</span><span class="pln">
+	renderer</span><span class="pun">.</span><span class="pln">render</span><span class="pun">(</span><span class="pln"> scene</span><span class="pun">,</span><span class="pln"> camera </span><span class="pun">);</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+render</span><span class="pun">();</span></code>
+
+		<div>这将创建一个循环，以每秒60次的频率来绘制场景。阅读过本站相关教程的同学，可能会熟悉requestAnimationFrame这个函数，它用来替代 <strong>setInterval</strong>，
+        这个新接口具备多个优点，比如浏览器Tab切换后停止渲染以节约资源、和屏幕刷新同步避免无效刷新、在不支持该接口的浏览器中能安全回退为setInterval。</div>
+
+		<h2>创建动画（Animating the cube）</h2>
+
+		<div>如果你一步步完成前述的代码，点击[运行]，你现在应该可以看到一个绿色的立方体，现在我们添加一点动画，让它转动起来。</div>
+
+		<div>把如下代码加在 <strong>render</strong> 函数中 <strong>renderer.render</strong> 这行代码之前：</div>
+
+		<code class=" prettyprint"><span class="pln">cube</span><span class="pun">.</span><span class="pln">rotation</span><span class="pun">.</span><span class="pln">x </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">;</span><span class="pln">
+cube</span><span class="pun">.</span><span class="pln">rotation</span><span class="pun">.</span><span class="pln">y </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">;</span></code>
+
+		<div>这样我们就使用Three.js完成了一个旋转的立方体。基本上，如果要改变立方体的运动，我们都是在render循环中处理。
+		</div>
+
+        <h2>结果</h2>
+		<div>恭喜你，你已经完成你自己的第一个Three.js程序，如果一切顺利，你应该能得到如下的结果：</div>
+        <div><iframe id="td_embed_26628" src="./26628.html" scrolling="no" frameborder="0" height="200" allowtransparency="true" allowfullscreen="true" name="TD Embed" title="TD Embed" class="td_embed_iframe undefined" style="width: 100%; overflow: hidden;"></iframe></div>
+		<div>完整代码你可以点击右上角的"Edit on TECHBROOD"进入踏得网开发平台代码模式，然后你可以自己在线调试和测试。我们同时也贴在这里以便查看：</div>
+
+		<code class=" prettyprint"><span class="tag">&lt;html&gt;</span><span class="pln">
+	</span><span class="tag">&lt;head&gt;</span><span class="pln">
+		</span><span class="tag">&lt;title&gt;</span><span class="pln">My first Three.js app</span><span class="tag">&lt;/title&gt;</span><span class="pln">
+		</span><span class="tag">&lt;style&gt;</span><span class="pln">
+			body </span><span class="pun">{</span><span class="pln"> margin</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> </span><span class="pun">}</span><span class="pln">
+			canvas </span><span class="pun">{</span><span class="pln"> width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%;</span><span class="pln"> height</span><span class="pun">:</span><span class="pln"> </span><span class="lit">100</span><span class="pun">%</span><span class="pln"> </span><span class="pun">}</span><span class="pln">
+		</span><span class="tag">&lt;/style&gt;</span><span class="pln">
+	</span><span class="tag">&lt;/head&gt;</span><span class="pln">
+	</span><span class="tag">&lt;body&gt;</span><span class="pln">
+		</span><span class="tag">&lt;script</span><span class="pln"> </span><span class="atn">src</span><span class="pun">=</span><span class="atv">"//wow.techbrood.com/libs/three.r73.js"</span><span class="tag">&gt;&lt;/script&gt;</span><span class="pln">
+		</span><span class="tag">&lt;script&gt;</span><span class="pln">
+			</span><span class="kwd">var</span><span class="pln"> scene </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Scene</span><span class="pun">();</span><span class="pln">
+			</span><span class="kwd">var</span><span class="pln"> camera </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">PerspectiveCamera</span><span class="pun">(</span><span class="pln"> </span><span class="lit">75</span><span class="pun">,</span><span class="pln"> window</span><span class="pun">.</span><span class="pln">innerWidth</span><span class="pun">/</span><span class="pln">window</span><span class="pun">.</span><span class="pln">innerHeight</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1000</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+
+			</span><span class="kwd">var</span><span class="pln"> renderer </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">WebGLRenderer</span><span class="pun">();</span><span class="pln">
+			renderer</span><span class="pun">.</span><span class="pln">setSize</span><span class="pun">(</span><span class="pln"> window</span><span class="pun">.</span><span class="pln">innerWidth</span><span class="pun">,</span><span class="pln"> window</span><span class="pun">.</span><span class="pln">innerHeight </span><span class="pun">);</span><span class="pln">
+			document</span><span class="pun">.</span><span class="pln">body</span><span class="pun">.</span><span class="pln">appendChild</span><span class="pun">(</span><span class="pln"> renderer</span><span class="pun">.</span><span class="pln">domElement </span><span class="pun">);</span><span class="pln">
+
+			</span><span class="kwd">var</span><span class="pln"> geometry </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">BoxGeometry</span><span class="pun">(</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+			</span><span class="kwd">var</span><span class="pln"> material </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">MeshBasicMaterial</span><span class="pun">(</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x00ff00</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+			</span><span class="kwd">var</span><span class="pln"> cube </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Mesh</span><span class="pun">(</span><span class="pln"> geometry</span><span class="pun">,</span><span class="pln"> material </span><span class="pun">);</span><span class="pln">
+			scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln"> cube </span><span class="pun">);</span><span class="pln">
+
+			camera</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">z </span><span class="pun">=</span><span class="pln"> </span><span class="lit">5</span><span class="pun">;</span><span class="pln">
+
+			</span><span class="kwd">var</span><span class="pln"> render </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+				requestAnimationFrame</span><span class="pun">(</span><span class="pln"> render </span><span class="pun">);</span><span class="pln">
+
+				cube</span><span class="pun">.</span><span class="pln">rotation</span><span class="pun">.</span><span class="pln">x </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">;</span><span class="pln">
+				cube</span><span class="pun">.</span><span class="pln">rotation</span><span class="pun">.</span><span class="pln">y </span><span class="pun">+=</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">;</span><span class="pln">
+
+				renderer</span><span class="pun">.</span><span class="pln">render</span><span class="pun">(</span><span class="pln">scene</span><span class="pun">,</span><span class="pln"> camera</span><span class="pun">);</span><span class="pln">
+			</span><span class="pun">};</span><span class="pln">
+
+			render</span><span class="pun">();</span><span class="pln">
+		</span><span class="tag">&lt;/script&gt;</span><span class="pln">
+	</span><span class="tag">&lt;/body&gt;</span><span class="pln">
+</span><span class="tag">&lt;/html&gt;</span></code>
+	
+
+</body></html>

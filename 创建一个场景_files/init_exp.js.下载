@@ -1,0 +1,59 @@
+/*
+ * add a fiddle to favorite list
+ */
+function favFiddle(){
+    var id = $("#fiddle_id").text();
+    $.get('/fiddle/collect?id='+id,
+      function(data){
+        var dataObj = eval("("+data+")");
+        if(dataObj.wid) {
+            alert('已收藏到个人主页');
+        }else{
+            if(dataObj.returncode === 'R02')
+                alert(dataObj.error);
+            else
+                alert('已收藏');
+        }
+      }
+    );
+}
+/*
+ * vote up a fiddle for the sake of recommendation
+ */
+function voteFiddle(){
+    var id = $("#fiddle_id").text();
+    $.get('/fiddle/vote?id='+id,
+      function(data){
+        var dataObj = eval("("+data+")");
+        if(dataObj.vote) {
+            $("#work_vote").addClass('voted');
+            $("#work_vote").html('点赞<span class="vote_circle">'+dataObj.vote+'</span>');
+        }else{
+            if(dataObj.returncode === 'R02')
+                alert(dataObj.error);
+            else
+                alert('点赞失败');
+        }
+      }
+    );
+}
+/*
+ * initialize the home page
+ */
+$(document).ready(
+	function(){
+        $("#work_vote").click(
+            function(){                
+                voteFiddle();                
+            }
+        );
+        $("#work_vote").mouseover(function(){
+            $(".voted_list").show();
+        });
+        $("#work_fav").click(
+            function(){
+                favFiddle();
+            }
+        );           
+	}
+);

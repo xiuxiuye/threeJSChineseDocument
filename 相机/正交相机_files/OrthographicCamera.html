@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!-- saved from url=(0069)http://techbrood.com/threejs/docs/api/cameras/OrthographicCamera.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<base href="../../">--><base href=".">
+		<script src="./list.js(1).下载"></script>
+		<script src="./page.js.下载"></script>
+		<link type="text/css" rel="stylesheet" href="./page.css">
+	<link href="./prettify.css" rel="stylesheet"><link href="./threejs.css" rel="stylesheet"><script src="./prettify.js.下载"></script></head>
+	<body>
+		<a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">3D对象(Object3D)</a> → <a href="javascript:window.parent.goTo(&#39;Camera&#39;)" title="Camera">Camera</a> →
+
+		<h1>OrthographicCamera</h1>
+
+		<div class="desc">正交投影相机</div>
+        <p>正交投影相机示意图如下：</p>
+        <p><img src="./ortho.jpg"></p>
+		<h2>示例</h2>
+
+		<div><a href="http://techbrood.com/threejs/examples/#canvas_camera_orthographic" target="_blank">camera / orthographic </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#canvas_camera_orthographic2" target="_blank">camera / orthographic2 </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_camera" target="_blank">camera </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_interactive_cubes_ortho" target="_blank">interactive / cubes / ortho </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_materials_cubemap_dynamic" target="_blank">materials / cubemap / dynamic </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_postprocessing_advanced" target="_blank">postprocessing / advanced </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_postprocessing_dof2" target="_blank">postprocessing / dof2 </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_postprocessing_godrays" target="_blank">postprocessing / godrays </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_rtt" target="_blank">rtt </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_shaders_tonemapping" target="_blank">shaders / tonemapping </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_shadowmap" target="_blank">shadowmap </a></div>
+		<div><a href="http://techbrood.com/threejs/examples/#webgl_terrain_dynamic" target="_blank">terrain / dynamic </a></div>
+
+		<code class=" prettyprint"><span class="kwd">var</span><span class="pln"> camera </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">OrthographicCamera</span><span class="pun">(</span><span class="pln"> width </span><span class="pun">/</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> width </span><span class="pun">/</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> height </span><span class="pun">/</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> height </span><span class="pun">/</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1000</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln"> camera </span><span class="pun">);</span></code>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>OrthographicCamera( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">left</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">right</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">top</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">bottom</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">near</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">far</a> )</h3>
+		<div>
+		left — 相机视椎体（Camera frustum）左面。<br>
+		right — 相机视椎体（Camera frustum）右面。<br>
+		top — 相机视椎体（Camera frustum）上面。<br>
+		bottom — 相机视椎体（Camera frustum）下面。<br>
+		near — 相机视椎体（Camera frustum）前面（靠近相机的这一面）。<br>
+		far — 相机视椎体（Camera frustum）后面（远离相机的这一面）。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.zoom&#39;)" target="_parent" title="OrthographicCamera.zoom" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;number&#39;)" title="number" id="zoom">zoom</a> </h3>
+		<div>获取和设置相机缩放因子。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.left&#39;)" target="_parent" title="OrthographicCamera.left" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="left">left</a> </h3>
+		<div>相机视椎体（Camera frustum）左面</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.right&#39;)" target="_parent" title="OrthographicCamera.right" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="right">right</a> </h3>
+		<div>相机视椎体（Camera frustum）右面.</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.top&#39;)" target="_parent" title="OrthographicCamera.top" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="top">top</a> </h3>
+		<div>相机视椎体（Camera frustum）上面.</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.bottom&#39;)" target="_parent" title="OrthographicCamera.bottom" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="bottom">bottom</a> </h3>
+		<div>相机视椎体（Camera frustum）下面.</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.near&#39;)" target="_parent" title="OrthographicCamera.near" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="near">near</a> </h3>
+		<div>相机视椎体（Camera frustum）前面.</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.far&#39;)" target="_parent" title="OrthographicCamera.far" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float" id="far">far</a> </h3>
+		<div>相机视椎体（Camera frustum）后面.</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.setViewOffset&#39;)" target="_parent" title="OrthographicCamera.setViewOffset" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="setViewOffset">setViewOffset</a> ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">fullWidth</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">fullHeight</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">x</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">y</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">width</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">height</a> )</h3>
+		<div>
+		fullWidth — 多视图设置的全宽<br>
+		fullHeight — 多视图设置的全高<br>
+		x — 副摄像头的水平偏移<br>
+		y — 副摄像头的垂直偏移<br>
+		width — 副摄像头宽度<br>
+		height — 副摄像头高度
+		</div>
+
+		<div>
+		该方法用于在一个较大的视椎体中设置视图偏移。这对于多窗口或多监视器/多机设置是有用的。关于如何使用它，你可以查看 <a href="javascript:window.parent.goTo(&#39;远景相机(PerspectiveCamera)&#39;)" title="远景相机(PerspectiveCamera)">远景相机(PerspectiveCamera)</a> 中的示例。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.clearViewOffset&#39;)" target="_parent" title="OrthographicCamera.clearViewOffset" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="clearViewOffset">clearViewOffset</a> ()</h3>
+		<div>
+		清除视图偏移。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.updateProjectionMatrix&#39;)" target="_parent" title="OrthographicCamera.updateProjectionMatrix" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="updateProjectionMatrix">updateProjectionMatrix</a> ()</h3>
+		<div>
+		更新相机投影矩阵，必须在参数发生变化后调用。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.clone&#39;)" target="_parent" title="OrthographicCamera.clone" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;OrthographicCamera&#39;)" title="OrthographicCamera" id="clone">clone</a> ()</h3>
+		<div>
+		<br>
+		返回一个OrthographicCamera对象的克隆。
+		</div>
+
+
+		<h3><a href="javascript:window.parent.goTo(&#39;OrthographicCamera.toJSON&#39;)" target="_parent" title="OrthographicCamera.toJSON" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;JSON&#39;)" title="JSON" id="toJSON">toJSON</a> ()</h3>
+		<div>
+		把相机数据转换成JSON格式。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		<a href="https://github.com/mrdoob/three.js/blob/master/src/cameras/OrthographicCamera.js" target="_blank">src/cameras/OrthographicCamera.js</a>
+	
+
+</body></html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- saved from url=(0053)http://wow.techbrood.com/fiddle/26628?vm=full&hd=none -->
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="http://s.techbrood.com/themes/techbrood/image/favicon.ico" type="image/x-icon">
+    <title>Three.js中文文档在线教程 - 第一个程序 - 踏得网</title>
+    <meta name="title" content="踏得网">
+    <meta name="description" content="在线开发Web前端代码，在线测试ES6代码，在线查找HTML5和CSS3实例代码">
+    <meta name="keywords" content="HTML5代码,HTML5动画,CSS3动画,SVG动画,作品展示,在线开发,在线调试,ES6在线编译,代码分享,实例演示,HTML5动画库,在线JS面试题库">
+        <script src="./hm.js(1).下载"></script><script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?8c68efa3648cdc01a3d8333e0becf3c7";
+      var s = document.getElementsByTagName("script")[0]; 
+      s.parentNode.insertBefore(hm, s);
+    })();
+    </script>
+    <meta name="csrf-param" content="_csrf">
+<meta name="csrf-token" content="VGthOGJNS25hGiJ.PQETKQwxOVswfgoIZyoGUy4UIhptJzN0ESspAg==">
+<link href="./fontawesome.css" rel="stylesheet" position="1">
+<link href="./main(1).css" rel="stylesheet">
+<link href="./common.css" rel="stylesheet">    
+	</head>
+
+	<body>
+    <script src="./jquery.js.下载"></script>
+<script src="./yii.js.下载"></script>
+<script src="./jquery-migrate-1.2.1.min.js.下载"></script>
+<script src="./jquery-jqModal.js.下载"></script>
+<script src="./dropzone.js.下载"></script>
+<script src="./common.js.下载"></script>        <!-- svg -->
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 100 100" style="enable-background: new 0 0 100 100; display: none;" xml:space="preserve">
+  <defs>
+    <path id="icon-expand" d="M99.999,0.002v37.499L86.498,23.999L65.796,44.701L55.298,34.203l20.703-20.702L62.497-0.001L99.999,0.002z M23.999,13.504
+    l20.702,20.703L34.203,44.704L13.501,24.002L-0.001,37.504V0.005h37.499L23.999,13.504z M86.498,76.001L99.999,62.5v37.499H62.5
+    l13.501-13.501L55.298,65.796l10.498-10.498L86.498,76.001z M44.701,65.796L23.999,86.498l13.502,13.501H0.002V62.5l13.502,13.501
+    l20.703-20.703L44.701,65.796z"></path>
+    <path id="icon-collapse" d="M55.298,44.697V7.198L68.799,20.7L89.501-0.002l10.498,10.498L79.296,31.198L92.8,44.7L55.298,44.697z M20.7,31.205
+    L-0.002,10.502L10.496,0.005l20.702,20.702L44.7,7.205v37.499H7.201L20.7,31.205z M68.799,79.296L55.298,92.797V55.298h37.499
+    L79.296,68.799l20.703,20.702L89.501,99.999L68.799,79.296z M0.002,89.501l20.702-20.702L7.202,55.298h37.499v37.499L31.199,79.296
+    L10.496,99.999L0.002,89.501z"></path>
+    <symbol id="icon-gear" viewBox="0 0 100 100"><path d="M87.687 45.077c-.313-2.433-.816-4.807-1.542-7.08l8.145-11.73-5.827-7.514-.094-.123-5.825-7.514-12.955 5.577c-2.04-1.265-4.192-2.362-6.46-3.22L59.42 0H40.587l-3.71 13.474c-2.27.857-4.42 1.955-6.463 3.222L17.457 11.12l-5.825 7.513-.097.124-5.822 7.517 8.146 11.73c-.727 2.272-1.234 4.646-1.545 7.08L0 52.032l2.08 9.375.033.15 2.08 9.375 14 .76c1.296 2.03 2.772 3.927 4.4 5.67L20.2 91.587l8.416 4.173.138.068L37.17 100l9.308-10.796c1.16.11 2.335.173 3.524.173s2.358-.074 3.52-.184l9.317 10.804 8.414-4.173.14-.066 8.414-4.172-2.396-14.228c1.628-1.74 3.104-3.64 4.4-5.672l14-.76 2.078-9.374.035-.154L100 52.025l-12.313-6.948zM50.003 34.51c8.435 0 15.272 7.035 15.272 15.72 0 8.678-6.84 15.716-15.272 15.716-8.436 0-15.272-7.038-15.272-15.717 0-8.685 6.84-15.72 15.273-15.72z"></path></symbol>
+    <symbol id="icon-edit" viewBox="0 0 100 100"><path d="M24.56 92.536L0 100l7.453-24.583c6.356-.244 17.322 10.792 17.107 17.12zM96.617 32.082l-.475.47-28.76-28.786.473-.472C80.782-9.646 109.87 18.81 96.617 32.082zM61.64 9.516L90.398 38.3 44.095 84.647c-1.222 1.22-2.234.884-2.234.884l2.315-15.356-14.454.074.073-14.468-15.342 2.312s-.34-1.01.884-2.234L61.64 9.516z"></path></symbol>
+    <symbol id="icon-rerun" viewBox="0 0 100 100"><path d="M55.702 50.002L77.85 72.324 100 50.002l-9.173-9.25-6.61 6.67C82.876 25.186 64.56 7.5 42.168 7.5 18.915 7.5 0 26.567 0 50.002 0 73.436 18.917 92.5 42.17 92.5h16.217V79.424H42.17c-16.103 0-29.194-13.197-29.194-29.42 0-16.23 13.092-29.427 29.193-29.427 15.08 0 27.37 11.615 28.89 26.41l-6.183-6.233-9.175 9.248z"></path></symbol>
+    <symbol id="icon-branch" viewBox="0 0 100 100"><path d="M84.34 62.504c-4.455 0-8.464 1.818-11.314 4.72-.52-.49-1.04-1.005-1.578-1.57-6.965-7.212-14.45-19.19-22.31-29.68C41.16 25.767 32.94 15.563 20.124 15.07H0v14.37h20.126c2.555-.112 6.556 1.992 11.208 6.913 6.96 7.197 14.454 19.17 22.315 29.662 4.82 6.164 9.758 12.293 15.74 16.29 1.99 6.19 7.93 10.687 14.95 10.687 8.647 0 15.66-6.824 15.66-15.244s-7.013-15.244-15.66-15.244zM51.54 29.438h18.987c2.637 4.795 7.83 8.06 13.81 8.06 8.65 0 15.662-6.825 15.662-15.244S92.985 7.01 84.337 7.01c-5.98 0-11.174 3.264-13.81 8.058H36.3c6.007 3.55 10.86 8.924 15.24 14.37z"></path></symbol>  
+  </defs>
+</svg>        <!-- svg.end -->
+        <!-- header -->
+        		<!-- header.end -->
+        
+		<!-- main-body:content -->
+        <div id="content">
+                                    <div id="main-content" class="wrap" style="margin-left: 0">
+	<iframe id="preview" src="./26628(2).html" style="background: #eee" allowfullscreen="true" allowtransparency="true"></iframe>
+</div>
+<div id="fiddle_id" style="display: none">26628</div>
+
+<script>
+function urlencode (str) {  
+    str = (str + '').toString();   
+
+    return encodeURIComponent(str).replace(/!/g, '%21').replace(/'/g, '%27').replace(/\(/g, '%28').  
+    replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');  
+};
+$(function(){
+    //init vote number
+    var votes = 14;
+    $("#work_vote").html('点赞<span class="vote_circle">'+votes+'</span>');
+
+    //init search words
+    var keywords = urlencode("three  教程");
+    $(".search").attr('href','//techbrood.com/?q='+keywords);
+});
+</script>
+        </div>
+		<!-- main-body:content.end -->
+        
+		<!-- footer -->
+        		<!-- footer.end -->
+    <script src="./jquery-tipsy-1.0.0.a.js.下载"></script>
+<script src="./init_exp.js.下载"></script>
+<script src="./flame.min.js.下载"></script>	
+
+</body></html>

@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<!-- saved from url=(0062)http://techbrood.com/threejs/docs/api/core/BufferGeometry.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<base href="../../">--><base href=".">
+		<script src="./list.js(1).下载"></script>
+		<script src="./page.js.下载"></script>
+		<link type="text/css" rel="stylesheet" href="./page.css">
+	<link href="./prettify.css" rel="stylesheet"><link href="./threejs.css" rel="stylesheet"><script src="./prettify.js.下载"></script></head>
+	<body>
+		<h1>缓存几何模型（BufferGeometry）</h1>
+
+		<div class="desc">
+		<p>
+		该类是一个 <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">几何模型(Geometry)</a> 的高效替代，因为它使用缓存（buffer）来保存所有数据，包括顶点位置、面索引、法向量、颜色、UVs以及自定义属性。
+        这节约了向GPU传递全部这些数据的成本。但同时也使得BufferGeometry要比 <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">几何模型(Geometry)</a> 更难以处理，不是以对象的方式来访问，比如使用<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">Vector3</a>来访问位置数据，
+        以<a href="javascript:window.parent.goTo(&#39;Color&#39;)" title="Color">Color</a>对象来访问颜色数据，你得从相应的<a href="javascript:window.parent.goTo(&#39;缓存属性(BufferAttribute)&#39;)" title="缓存属性(BufferAttribute)">attribute</a>缓存中访问原始数据。
+        这使得BufferGeometry很适合用来存储静态对象，也就是当我们创建完模型实例后不太需要去操作它。
+		</p>
+
+		<h3>示例</h3>
+		<code class=" prettyprint"><span class="kwd">var</span><span class="pln"> geometry </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">BufferGeometry</span><span class="pun">();</span><span class="pln">
+</span><span class="com">// create a simple square shape. We duplicate the top left and bottom right</span><span class="pln">
+</span><span class="com">// vertices because each vertex needs to appear once per triangle.</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> vertices </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Float32Array</span><span class="pun">(</span><span class="pln"> </span><span class="pun">[</span><span class="pln">
+	</span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">
+	 </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">
+	 </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">
+
+	 </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">
+	</span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">
+	</span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">1.0</span><span class="pun">,</span><span class="pln">  </span><span class="lit">1.0</span><span class="pln">
+</span><span class="pun">]</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">// itemSize = 3 because there are 3 values (components) per vertex</span><span class="pln">
+geometry</span><span class="pun">.</span><span class="pln">addAttribute</span><span class="pun">(</span><span class="pln"> </span><span class="str">'position'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">BufferAttribute</span><span class="pun">(</span><span class="pln"> vertices</span><span class="pun">,</span><span class="pln"> </span><span class="lit">3</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> material </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">MeshBasicMaterial</span><span class="pun">(</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0xff0000</span><span class="pln"> </span><span class="pun">}</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> mesh </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Mesh</span><span class="pun">(</span><span class="pln"> geometry</span><span class="pun">,</span><span class="pln"> material </span><span class="pun">);</span></code>
+		<p>更多示例： <a href="http://techbrood.com/threejs/examples/#webgl_buffergeometry" target="_blank">Complex mesh with non-indexed faces</a>, <a href="http://techbrood.com/threejs/examples/#webgl_buffergeometry_uint" target="_blank">Complex mesh with indexed faces</a>, <a href="http://techbrood.com/threejs/examples/#webgl_buffergeometry_lines" target="_blank">Lines</a>, <a href="http://techbrood.com/threejs/examples/#webgl_buffergeometry_lines_indexed" target="_blank">Indexed Lines</a>, <a href="http://techbrood.com/threejs/examples/#webgl_buffergeometry_custom_attributes_particles" target="_blank">Particles</a>, and <a href="http://techbrood.com/threejs/examples/#webgl_buffergeometry_rawshader" target="_blank">Raw Shaders</a>.</p>
+
+
+		<h3>访问属性（Accessing attributes）</h3>
+		<p>
+		WebGL 把和每个顶点模型关联的数据保存在 <em>属性（attributes）</em> 中。
+		比如顶点位置、顶点法向量、顶点颜色等。当使用 <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">几何模型(Geometry)</a> 时，<a href="javascript:window.parent.goTo(&#39;WebGL渲染器(WebGLRenderer)&#39;)" title="WebGL渲染器(WebGLRenderer)">renderer</a> 负责封装这些信息到有类型数组缓存中并发送该数据到着色器。
+        当使用BufferGeometry时，所有这些和独立属性关联的数据都被保存进缓存中。
+		举例来说，这意味着为了获取一个顶点的关联位置数据，你必须调用 <a href="javascript:window.parent.goTo(&#39;BufferGeometry.getAttribute&#39;)" title="BufferGeometry.getAttribute">.getAttribute</a> 来访问 'position' <a href="javascript:window.parent.goTo(&#39;缓存属性(BufferAttribute)&#39;)" title="缓存属性(BufferAttribute)">attribute</a>，然后可以访问该位置属性的x/y/z坐标值。
+		</p>
+		<p>
+		下面的属性通过不同的类成员来设置：
+		</p>
+		<h4><a href="javascript:window.parent.goTo(&#39;缓存属性(BufferAttribute)&#39;)" title="缓存属性(BufferAttribute)">position</a> (itemSize: 3)</h4>
+		<div>
+		保存模型中每个顶点的x, y, 和 z 坐标。通过 <a href="javascript:window.parent.goTo(&#39;BufferGeometry.fromGeometry&#39;)" title="BufferGeometry.fromGeometry">.fromGeometry</a>() 设置。
+		</div>
+
+		<h4><a href="javascript:window.parent.goTo(&#39;缓存属性(BufferAttribute)&#39;)" title="缓存属性(BufferAttribute)">normal</a> (itemSize: 3)</h4>
+		<div>
+		保存模型中每个顶点处的面或顶点法向量的x, y, 和 z 分量。通过 <a href="javascript:window.parent.goTo(&#39;BufferGeometry.fromGeometry&#39;)" title="BufferGeometry.fromGeometry">.fromGeometry</a>() 设置。
+		</div>
+
+		<h4><a href="javascript:window.parent.goTo(&#39;缓存属性(BufferAttribute)&#39;)" title="缓存属性(BufferAttribute)">color</a> (itemSize: 3)</h4>
+		<div>
+		保存模型中每个顶点颜色的红、绿和蓝色通道。通过 <a href="javascript:window.parent.goTo(&#39;BufferGeometry.fromGeometry&#39;)" title="BufferGeometry.fromGeometry">.fromGeometry</a>() 设置。
+		</div>
+
+		<h4><a href="javascript:window.parent.goTo(&#39;缓存属性(BufferAttribute)&#39;)" title="缓存属性(BufferAttribute)">index</a> (itemSize: 3)</h4>
+		允许顶点可以被在多个三角形（如相邻三角形）中复用；这被称为使用“索引三角形（indexed triangles）”，和在 <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">几何模型(Geometry)</a> 中的工作方式差不多：
+        每个三角形和三个顶点的索引值关联。此属性因此存储每个三角面上的每个顶点的索引。
+
+		如果该属性未被设置，<a href="javascript:window.parent.goTo(&#39;WebGL渲染器(WebGLRenderer)&#39;)" title="WebGL渲染器(WebGLRenderer)">renderer</a> 假设每三个连续位置构成单个三角形。
+		</div>
+		<p>
+		除了内置的属性，你可以使用addattribute方法设置你自己的自定义属性。
+        使用 <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">几何模型(Geometry)</a>时，这些属性被设置和保存在 <a href="javascript:window.parent.goTo(&#39;材料(Material)&#39;)" title="材料(Material)">材料(Material)</a> 中。
+        在BufferGeometry中，这些属性被保存在模型本身中。请注意，你仍然需要在材料中设置属性信息，不过每个属性的值被存储在 BufferGeometry 中。
+		</p>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>BufferGeometry()</h3>
+		<div>
+		创建一个新的 BufferGeometry，并设置一些属性为默认值。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.id&#39;)" target="_parent" title="BufferGeometry.id" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Integer&#39;)" title="Integer" id="id">id</a> </h3>
+		<div>
+		这个BufferGeometry实例的唯一编号。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.attributes&#39;)" target="_parent" title="BufferGeometry.attributes" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Hashmap&#39;)" title="Hashmap" id="attributes">attributes</a> </h3>
+		<div>
+		该哈希表中数据项的id用来设置属性名称，value用来设置 <a href="javascript:window.parent.goTo(&#39;缓存属性(BufferAttribute)&#39;)" title="缓存属性(BufferAttribute)">buffer</a>。
+		使用addattribute和getAttribute方法来访问这个几何模型（geometry）属性，而不是直接访问该属性。
+		</div>
+
+		<!--
+ 		<h3><a href="javascript:window.parent.goTo('BufferGeometry.dynamic')" target="_parent" title="BufferGeometry.dynamic" class="permalink">#</a> .<a href="javascript:window.parent.goTo('Boolean')" title="Boolean" id="dynamic">dynamic</a> </h3>
+		<div>
+		When set, it holds certain buffers in memory to have faster updates for this object. When unset, it deletes those buffers and   saves memory.
+		</div> -->
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.drawcalls&#39;)" target="_parent" title="BufferGeometry.drawcalls" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="drawcalls">drawcalls</a>  (之前是 <a href="javascript:window.parent.goTo(&#39;BufferGeometry.offsets&#39;)" target="_parent" title="BufferGeometry.offsets" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="offsets">offsets</a> )</h3>
+		<div>
+		对于使用索引三角形的几何模型，这个数组可以分为多个WebGL绘制调用。每个绘制调用将使用已配置的<a href="javascript:window.parent.goTo(&#39;材料(Material)&#39;)" title="材料(Material)">shader</a>来绘制顶点的一些子集。
+        如果你的对象有65535个以上的顶点，这可能是必要的。每个元素是如下形式的一个对象：
+		<code class=" prettyprint"><span class="pun">{</span><span class="pln"> start</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> count</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Integer</span><span class="pun">,</span><span class="pln"> index</span><span class="pun">:</span><span class="pln"> </span><span class="typ">Integer</span><span class="pln"> </span><span class="pun">}</span></code>
+		这里 start 指定本次绘制的第一个顶点的索引，count 指定要包含多少个顶点，而 index 指定一个可选的偏移量。
+
+		使用 addDrawCall 方法来添加绘制调用，而不是直接修改这个数组。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.boundingBox&#39;)" target="_parent" title="BufferGeometry.boundingBox" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Box3&#39;)" title="Box3" id="boundingBox">boundingBox</a> </h3>
+		<div>
+		包围盒（Bounding box）。
+		<code class=" prettyprint"><span class="pun">{</span><span class="pln"> min</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector3</span><span class="pun">(),</span><span class="pln"> max</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector3</span><span class="pun">()</span><span class="pln"> </span><span class="pun">}</span></code>
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.boundingSphere&#39;)" target="_parent" title="BufferGeometry.boundingSphere" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Sphere&#39;)" title="Sphere" id="boundingSphere">boundingSphere</a> </h3>
+		<div>
+		包围球（Bounding sphere）。
+		<code class=" prettyprint"><span class="pun">{</span><span class="pln"> radius</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">float</span><span class="pln"> </span><span class="pun">}</span></code>
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>该类拥有方法 <a href="javascript:window.parent.goTo(&#39;事件分发器(EventDispatcher)&#39;)" title="事件分发器(EventDispatcher)">EventDispatcher</a></h3>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.addAttribute&#39;)" target="_parent" title="BufferGeometry.addAttribute" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="addAttribute">addAttribute</a> ( <a href="javascript:window.parent.goTo(&#39;字符串(String)&#39;)" title="字符串(String)">name</a>, <a href="javascript:window.parent.goTo(&#39;缓存属性(BufferAttribute)&#39;)" title="缓存属性(BufferAttribute)">attribute</a> )</h3>
+		<div>
+		将属性添加到该几何体中。使用此方法而不是直接操作attributes属性，因为有一个内部attributes数组用来加快属性的迭代。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.addDrawCall&#39;)" target="_parent" title="BufferGeometry.addDrawCall" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="addDrawCall">addDrawCall</a> ( <a href="javascript:window.parent.goTo(&#39;Integer&#39;)" title="Integer">start</a>, <a href="javascript:window.parent.goTo(&#39;Integer&#39;)" title="Integer">count</a>, <a href="javascript:window.parent.goTo(&#39;Integer&#39;)" title="Integer">indexOffset</a> )</h3>
+		<div>
+		给这个几何模型添加一个绘图调用。细节请查阅 <a href="javascript:window.parent.goTo(&#39;缓存几何模型(BufferGeometry).drawcalls&#39;)" title="缓存几何模型(BufferGeometry).drawcalls">drawcalls</a> 属性。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.clearDrawCalls&#39;)" target="_parent" title="BufferGeometry.clearDrawCalls" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="clearDrawCalls">clearDrawCalls</a> ( )</h3>
+		<div>
+		清除所有绘制调用。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.applyMatrix&#39;)" target="_parent" title="BufferGeometry.applyMatrix" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="applyMatrix">applyMatrix</a> ( <a href="javascript:window.parent.goTo(&#39;Matrix4&#39;)" title="Matrix4">matrix</a> )</h3>
+		<div>
+		给顶点坐标施加矩阵变换。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.center&#39;)" target="_parent" title="BufferGeometry.center" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="center">center</a>  ()</h3>
+		<div>
+		使基于包围盒的几何模型居中。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.rotateX&#39;)" target="_parent" title="BufferGeometry.rotateX" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;BufferGeometry&#39;)" title="BufferGeometry" id="rotateX">rotateX</a>  ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">radians</a> )</h3>
+		<div>
+		使模型绕X轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).rotation&#39;)" title="3D对象(Object3D).rotation">3D对象(Object3D).rotation</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.rotateY&#39;)" target="_parent" title="BufferGeometry.rotateY" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;BufferGeometry&#39;)" title="BufferGeometry" id="rotateY">rotateY</a>  ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">radians</a> )</h3>
+		<div>
+		使模型绕Y轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).rotation&#39;)" title="3D对象(Object3D).rotation">3D对象(Object3D).rotation</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.rotateZ&#39;)" target="_parent" title="BufferGeometry.rotateZ" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;BufferGeometry&#39;)" title="BufferGeometry" id="rotateZ">rotateZ</a>  ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">radians</a> )</h3>
+		<div>
+		使模型绕Z轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).rotation&#39;)" title="3D对象(Object3D).rotation">3D对象(Object3D).rotation</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.translate&#39;)" target="_parent" title="BufferGeometry.translate" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;BufferGeometry&#39;)" title="BufferGeometry" id="translate">translate</a>  ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">x</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">y</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">z</a> )</h3>
+		<div>
+		平移模型。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).position&#39;)" title="3D对象(Object3D).position">3D对象(Object3D).position</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.scale&#39;)" target="_parent" title="BufferGeometry.scale" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;BufferGeometry&#39;)" title="BufferGeometry" id="scale">scale</a>  ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">x</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">y</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">z</a> )</h3>
+		<div>
+		缩放模型。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).scale&#39;)" title="3D对象(Object3D).scale">3D对象(Object3D).scale</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.lookAt&#39;)" target="_parent" title="BufferGeometry.lookAt" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;BufferGeometry&#39;)" title="BufferGeometry" id="lookAt">lookAt</a>  ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">vector</a> )</h3>
+		<div>
+		vector - 一个观察点世界向量<br>
+		</div>
+		<div>
+		旋转模型以面对观察点。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).lookAt&#39;)" title="3D对象(Object3D).lookAt">3D对象(Object3D).lookAt</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.setFromObject&#39;)" target="_parent" title="BufferGeometry.setFromObject" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;BufferGeometry&#39;)" title="BufferGeometry" id="setFromObject">setFromObject</a>  ( <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">object</a> )</h3>
+		<div>
+		从一个<a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">3D对象(Object3D)</a>对象来设置该BufferGeometry的attributes。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.computeVertexNormals&#39;)" target="_parent" title="BufferGeometry.computeVertexNormals" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="computeVertexNormals">computeVertexNormals</a> ()</h3>
+		<div>
+		通过平均面法线来计算顶点法线。<br>
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.computeBoundingBox&#39;)" target="_parent" title="BufferGeometry.computeBoundingBox" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="computeBoundingBox">computeBoundingBox</a> ()</h3>
+		<div>
+		计算该模型的包围盒，更新 <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">Geometry.boundingBox</a> 属性。<br>
+		包围盒并不会默认计算，需要显式计算，否则它们为 <strong>null</strong>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.computeBoundingSphere&#39;)" target="_parent" title="BufferGeometry.computeBoundingSphere" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="computeBoundingSphere">computeBoundingSphere</a> ()</h3>
+		<div>
+		计算该模型的包围球，更新 <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">Geometry.boundingSphere</a> 属性。<br>
+		包围球并不会默认计算，需要显式计算，否则它们为 <strong>null</strong>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.computeOffsets&#39;)" target="_parent" title="BufferGeometry.computeOffsets" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="computeOffsets">computeOffsets</a>  ( <a href="javascript:window.parent.goTo(&#39;Integer&#39;)" title="Integer">size</a> )</h3>
+		<div>
+		把大模型分成相连的65k可寻址顶点块，使用该方法计算绘制偏移。
+		该方法实际上将重写索引缓存，并重新映射所有属性以匹配新的索引值。
+		警告：这种方法也将扩大顶点计数防止随意扩展的三角形横跨绘制偏移。
+		size - 默认为65535 或者是 4294967296，如果支持扩展 OES_element_index_uint的话。允许较大或较小的顶点块。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.merge&#39;)" target="_parent" title="BufferGeometry.merge" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="merge">merge</a> ( <a href="javascript:window.parent.goTo(&#39;缓存几何模型(BufferGeometry)&#39;)" title="缓存几何模型(BufferGeometry)">bufferGeometry</a>, <a href="javascript:window.parent.goTo(&#39;Integer&#39;)" title="Integer">offset</a> )</h3>
+		<div>
+		合并另一个 BufferGeometry，带一个可选参数 offset 表示从哪里开始合并。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.dispose&#39;)" target="_parent" title="BufferGeometry.dispose" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="dispose">dispose</a> ()</h3>
+		<div>
+		从内存中释放该对象。 <br>
+		当你想在程序运行期间删除BufferGeometry时，需要调用该方法。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.fromGeometry&#39;)" target="_parent" title="BufferGeometry.fromGeometry" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="fromGeometry">fromGeometry</a> ( <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">几何模型(Geometry)</a> )</h3>
+		<div>
+		从1个 <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">几何模型(Geometry)</a> 对象中生成BufferGeometry。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.getAttribute&#39;)" target="_parent" title="BufferGeometry.getAttribute" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;BufferAttribute&#39;)" title="BufferAttribute" id="getAttribute">getAttribute</a> ( <a href="javascript:window.parent.goTo(&#39;字符串(String)&#39;)" title="字符串(String)">name</a> )</h3>
+		<div>
+		返回指定名称的 <a href="javascript:window.parent.goTo(&#39;缓存属性(BufferAttribute)&#39;)" title="缓存属性(BufferAttribute)">attribute</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.removeAttribute&#39;)" target="_parent" title="BufferGeometry.removeAttribute" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;BufferAttribute&#39;)" title="BufferAttribute" id="removeAttribute">removeAttribute</a> ( <a href="javascript:window.parent.goTo(&#39;字符串(String)&#39;)" title="字符串(String)">name</a> )</h3>
+		<div>
+		删除指定名称的 <a href="javascript:window.parent.goTo(&#39;缓存属性(BufferAttribute)&#39;)" title="缓存属性(BufferAttribute)">attribute</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.normalizeNormals&#39;)" target="_parent" title="BufferGeometry.normalizeNormals" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="normalizeNormals">normalizeNormals</a> ()</h3>
+		<div>
+		正规化模型中的法向量，也就是将每个法向量的幅度变换为1。
+		这将修正模型表面的照明。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.toJSON&#39;)" target="_parent" title="BufferGeometry.toJSON" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Object&#39;)" title="Object" id="toJSON">toJSON</a> ()</h3>
+		<div>
+		返回BufferGeometry原始数据对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.clone&#39;)" target="_parent" title="BufferGeometry.clone" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;BufferGeometry&#39;)" title="BufferGeometry" id="clone">clone</a> ()</h3>
+		<div>
+		创建该BufferGeometry对象的一个克隆。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;BufferGeometry.copy&#39;)" target="_parent" title="BufferGeometry.copy" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;BufferGeometry&#39;)" title="BufferGeometry" id="copy">copy</a> ( <a href="javascript:window.parent.goTo(&#39;缓存几何模型(BufferGeometry)&#39;)" title="缓存几何模型(BufferGeometry)">bufferGeometry</a> )</h3>
+		<div>
+		把另外一个BufferGeometry拷贝到这个BufferGeometry中。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		<a href="https://github.com/mrdoob/three.js/blob/master/src/core/BufferGeometry.js" target="_blank">src/core/BufferGeometry.js</a>
+	
+</body></html>

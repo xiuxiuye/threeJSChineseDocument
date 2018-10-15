@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://techbrood.com/threejs/docs/api/core/Object3D.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<base href="../../">--><base href=".">
+		<script src="./list.js(1).下载"></script>
+		<script src="./page.js.下载"></script>
+		<link type="text/css" rel="stylesheet" href="./page.css">
+	<link href="./prettify.css" rel="stylesheet"><link href="./threejs.css" rel="stylesheet"><script src="./prettify.js.下载"></script></head>
+	<body>
+		<h1>3D对象（Object3D）</h1>
+
+		<div class="desc">3D场景中图形对象的基类。</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>Object3D()</h3>
+		<div>
+		该构造函数没有参数。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.id&#39;)" target="_parent" title="Object3D.id" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Integer&#39;)" title="Integer" id="id">id</a> </h3>
+		<div>
+		只读 – 此对象实例的唯一编号。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.uuid&#39;)" target="_parent" title="Object3D.uuid" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;String&#39;)" title="String" id="uuid">uuid</a> </h3>
+		<div>
+		该对象的<a href="http://en.wikipedia.org/wiki/Universally_unique_identifier" target="_blank">UUID</a>
+		由程序自动分配，所以不可编辑。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.name&#39;)" target="_parent" title="Object3D.name" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;String&#39;)" title="String" id="name">name</a> </h3>
+		<div>
+		对象的可选名称（不需要是唯一的）。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.parent&#39;)" target="_parent" title="Object3D.parent" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Object3D&#39;)" title="Object3D" id="parent">parent</a> </h3>
+		<div>
+		该对象在场景图中的父对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.children&#39;)" target="_parent" title="Object3D.children" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Object3D&#39;)" title="Object3D" id="children">children</a> </h3>
+		<div>
+		该对象的子对象数组。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.position&#39;)" target="_parent" title="Object3D.position" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3" id="position">position</a> </h3>
+		<div>
+		对象的局部位置。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.rotation&#39;)" target="_parent" title="Object3D.rotation" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Euler&#39;)" title="Euler" id="rotation">rotation</a> </h3>
+		<div>
+		对象的局部旋转，单位为弧度。 (<a href="https://en.wikipedia.org/wiki/Euler_angles" target="_blank">欧拉角（Euler angles）</a>)。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.scale&#39;)" target="_parent" title="Object3D.scale" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3" id="scale">scale</a> </h3>
+		<div>
+		对象的局部缩放因子。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.up&#39;)" target="_parent" title="Object3D.up" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3" id="up">up</a> </h3>
+		<div>
+		空间的向上方向。缺省是 THREE.Vector3( 0, 1, 0 )。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.matrix&#39;)" target="_parent" title="Object3D.matrix" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Matrix4&#39;)" title="Matrix4" id="matrix">matrix</a> </h3>
+		<div>
+		局部变换。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.quaternion&#39;)" target="_parent" title="Object3D.quaternion" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Quaternion&#39;)" title="Quaternion" id="quaternion">quaternion</a> </h3>
+		<div>
+		使用<a href="javascript:window.parent.goTo(&#39;四元数(Quaternion)&#39;)" title="四元数(Quaternion)">Quaternion</a>表示的对象局部旋转。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.visible&#39;)" target="_parent" title="Object3D.visible" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="visible">visible</a> </h3>
+		<div>
+		是否可见，如果为true，则对象被渲染。
+		</div>
+		<div>
+		缺省值 – true
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.castShadow&#39;)" target="_parent" title="Object3D.castShadow" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="castShadow">castShadow</a> </h3>
+		<div>
+		是否被渲染到阴影映射中。
+		</div>
+		<div>
+		缺省值 – false
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.receiveShadow&#39;)" target="_parent" title="Object3D.receiveShadow" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="receiveShadow">receiveShadow</a> </h3>
+		<div>
+		材料接受阴影效果。
+		</div>
+		<div>
+		缺省值 – false
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.frustumCulled&#39;)" target="_parent" title="Object3D.frustumCulled" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="frustumCulled">frustumCulled</a> </h3>
+		<div>
+		当设置为true时，每一帧都会检查该对象是否在相机的视椎体中。否则，即使它是不可见的，对象也会得到绘制。
+		</div>
+		<div>
+		缺省值 – true
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.matrixAutoUpdate&#39;)" target="_parent" title="Object3D.matrixAutoUpdate" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="matrixAutoUpdate">matrixAutoUpdate</a> </h3>
+		<div>
+		当设置为true时会自动更新矩阵，包括计算位置矩阵（旋转或四元数），逐帧缩放，也会重新计算世界矩阵（matrixWorld）属性。
+		</div>
+		<div>
+		缺省值 – true
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.matrixWorldNeedsUpdate&#39;)" target="_parent" title="Object3D.matrixWorldNeedsUpdate" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="matrixWorldNeedsUpdate">matrixWorldNeedsUpdate</a> </h3>
+		<div>
+		当设置为true时，会计算该帧中的世界矩阵属性，然后重置该属性为false。
+		</div>
+		<div>
+		缺省值 – false
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.userData&#39;)" target="_parent" title="Object3D.userData" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;object&#39;)" title="object" id="userData">userData</a> </h3>
+		<div>
+		可以用来存储该Object3D对象的自定义数据，它不应该保存有函数的引用，因为这些不会被克隆。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.matrixWorld&#39;)" target="_parent" title="Object3D.matrixWorld" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Matrix4&#39;)" title="Matrix4" id="matrixWorld">matrixWorld</a> </h3>
+		<div>
+		对象的全局变换。如果该Object3D没有父对象，那么它和局部变换相同。
+		</div>
+
+
+		<h2>方法（Methods）</h2>
+
+		<h3>该类可以使用方法 <a href="javascript:window.parent.goTo(&#39;事件分发器(EventDispatcher)&#39;)" title="事件分发器(EventDispatcher)">EventDispatcher</a></h3>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.applyMatrix&#39;)" target="_parent" title="Object3D.applyMatrix" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="applyMatrix">applyMatrix</a> ( <a href="javascript:window.parent.goTo(&#39;Matrix4&#39;)" title="Matrix4">matrix</a> )</h3>
+		<div>
+		matrix - 矩阵
+		</div>
+		<div>
+		使用矩阵变换更新对象的位置、旋转和大小。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.translateX&#39;)" target="_parent" title="Object3D.translateX" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="translateX">translateX</a> ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">distance</a> )</h3>
+		<div>
+		distance - 距离。<br>
+		</div>
+		<div>
+		沿X轴平移对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.translateY&#39;)" target="_parent" title="Object3D.translateY" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="translateY">translateY</a> ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">distance</a> )</h3>
+		<div>
+		distance - 距离。<br>
+		</div>
+		<div>
+		沿Y轴平移对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.translateZ&#39;)" target="_parent" title="Object3D.translateZ" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="translateZ">translateZ</a> ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">distance</a> )</h3>
+		<div>
+		distance - 距离。<br>
+		</div>
+		<div>
+		沿Z轴平移对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.rotateX&#39;)" target="_parent" title="Object3D.rotateX" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="rotateX">rotateX</a> ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">rad</a> )</h3>
+		<div>
+		rad - 以弧度为单位的旋转角度<br>
+		</div>
+		<div>
+		在局部空间中绕X轴旋转对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.rotateY&#39;)" target="_parent" title="Object3D.rotateY" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="rotateY">rotateY</a> ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">rad</a> )</h3>
+		<div>
+		rad - 以弧度为单位的旋转角度<br>
+		</div>
+		<div>
+		在局部空间中绕Y轴旋转对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.rotateZ&#39;)" target="_parent" title="Object3D.rotateZ" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="rotateZ">rotateZ</a> ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">rad</a> )</h3>
+		<div>
+		rad - 以弧度为单位的旋转角度<br>
+		</div>
+		<div>
+		在局部空间中绕Z轴旋转对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.localToWorld&#39;)" target="_parent" title="Object3D.localToWorld" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3" id="localToWorld">localToWorld</a> ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">vector</a> )</h3>
+		<div>
+		vector - 一个局部向量<br>
+		</div>
+		<div>
+		从局部空间到世界空间（全局空间）的向量转换。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.worldToLocal&#39;)" target="_parent" title="Object3D.worldToLocal" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3" id="worldToLocal">worldToLocal</a> ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">vector</a> )</h3>
+		<div>
+		vector - 一个全局向量<br>
+		</div>
+		<div>
+		从世界空间到局部空间的向量转换。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.lookAt&#39;)" target="_parent" title="Object3D.lookAt" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="lookAt">lookAt</a> ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">vector</a> )</h3>
+		<div>
+		vector - 一个世界向量观察点<br>
+		</div>
+		<div>
+		旋转模型以面对观察点。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.add&#39;)" target="_parent" title="Object3D.add" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="add">add</a> ( <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">object</a>, ... )</h3>
+		<div>
+		object - 一个对象<br>
+		</div>
+		<div>
+		添加 <strong>object</strong> 为该对象的子对象。可以添加任意数量的对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.remove&#39;)" target="_parent" title="Object3D.remove" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="remove">remove</a> ( <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">object</a>, ... )</h3>
+		<div>
+		object - 一个对象<br>
+		</div>
+		<div>
+		删除该对象中的 <strong>object</strong> 子对象。可以删除任意数量的对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.traverse&#39;)" target="_parent" title="Object3D.traverse" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="traverse">traverse</a> ( <a href="javascript:window.parent.goTo(&#39;函数(Function)&#39;)" title="函数(Function)">callback</a> )</h3>
+		<div>
+		callback - 第一个参数为Object3D对象的回调函数。<br>
+		</div>
+		<div>
+		在这个对象和所有的子对象上执行回调。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.traverseVisible&#39;)" target="_parent" title="Object3D.traverseVisible" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="traverseVisible">traverseVisible</a> ( <a href="javascript:window.parent.goTo(&#39;函数(Function)&#39;)" title="函数(Function)">callback</a> )</h3>
+		<div>
+		callback - 第一个参数为Object3D对象的回调函数。<br>
+		</div>
+		<div>
+		和 traverse 方法类似，但是这个callback将只在可见对象上执行。
+		不可见对象的后代不会被遍历。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.traverseAncestors&#39;)" target="_parent" title="Object3D.traverseAncestors" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="traverseAncestors">traverseAncestors</a> ( <a href="javascript:window.parent.goTo(&#39;函数(Function)&#39;)" title="函数(Function)">callback</a> )</h3>
+		<div>
+		callback - 第一个参数为Object3D对象的回调函数。<br>
+		</div>
+		<div>
+		执行所有祖先的回调。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.updateMatrix&#39;)" target="_parent" title="Object3D.updateMatrix" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="updateMatrix">updateMatrix</a> ()</h3>
+		<div>
+		更新对象的局部变换。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.updateMatrixWorld&#39;)" target="_parent" title="Object3D.updateMatrixWorld" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="updateMatrixWorld">updateMatrixWorld</a> ( <a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean">force</a> )</h3>
+		<div>
+		更新对象和它的子对象的全局变换。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.clone&#39;)" target="_parent" title="Object3D.clone" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Object3D&#39;)" title="Object3D" id="clone">clone</a> ( <a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean">recursive</a> )</h3>
+		<div>
+		recursive -- 如果为true，对象的后代也会被克隆（概念上类似于C语言的深度拷贝）。默认是true。
+		</div>
+		<div>
+		返回该对象的克隆以及可选的所有后代对象。
+		</div>
+
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.getObjectByName&#39;)" target="_parent" title="Object3D.getObjectByName" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Object3D&#39;)" title="Object3D" id="getObjectByName">getObjectByName</a> ( <a href="javascript:window.parent.goTo(&#39;字符串(String)&#39;)" title="字符串(String)">name</a> )</h3>
+		<div>
+		name -- 和子对象的Object3d.name属性匹配的字符串<br>
+		</div>
+		<div>
+		搜索对象的子对象，并返回第一个和name匹配的对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.getObjectById&#39;)" target="_parent" title="Object3D.getObjectById" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Object3D&#39;)" title="Object3D" id="getObjectById">getObjectById</a> ( <a href="javascript:window.parent.goTo(&#39;Integer&#39;)" title="Integer">id</a> )</h3>
+		<div>
+		id -- 对象实例的唯一编号<br>
+		</div>
+		<div>
+		搜索对象的子对象，并返回第一个和id匹配的对象。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.getWorldPosition&#39;)" target="_parent" title="Object3D.getWorldPosition" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3" id="getWorldPosition">getWorldPosition</a> ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">optionalTarget</a> )</h3>
+		<div>
+		optionalTarget — 用来保存结果的目标对象。否则，实例化一个新的`Vector3`对象。（可选）<br>
+		</div>
+		<div>
+		返回一个表示对象在世界空间中的位置的向量。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.getWorldQuaternion&#39;)" target="_parent" title="Object3D.getWorldQuaternion" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Quaternion&#39;)" title="Quaternion" id="getWorldQuaternion">getWorldQuaternion</a> ( <a href="javascript:window.parent.goTo(&#39;四元数(Quaternion)&#39;)" title="四元数(Quaternion)">optionalTarget</a> )</h3>
+		<div>
+		optionalTarget — 用来保存结果的目标对象。否则，实例化一个新的`Quaternion`对象。<br>
+		</div>
+		<div>
+		返回一个表示在世界空间中对象的旋转的四元数。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.getWorldRotation&#39;)" target="_parent" title="Object3D.getWorldRotation" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Euler&#39;)" title="Euler" id="getWorldRotation">getWorldRotation</a> ( <a href="javascript:window.parent.goTo(&#39;欧拉角(Euler)&#39;)" title="欧拉角(Euler)">optionalTarget</a> )</h3>
+		<div>
+		optionalTarget — 用来保存结果的目标对象。否则，实例化一个新的`Euler`对象。<br>
+		</div>
+		<div>
+		返回一个表示在世界空间中对象的旋转的欧拉角。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.getWorldScale&#39;)" target="_parent" title="Object3D.getWorldScale" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3" id="getWorldScale">getWorldScale</a> ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">optionalTarget</a> )</h3>
+		<div>
+		optionalTarget — 用来保存结果的目标对象。否则，实例化一个新的`Vector3`对象。（可选）<br>
+		</div>
+		<div>
+		返回用在世界空间中每个轴的对象上的缩放因子的向量。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.getWorldDirection&#39;)" target="_parent" title="Object3D.getWorldDirection" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3" id="getWorldDirection">getWorldDirection</a> ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">optionalTarget</a> )</h3>
+		<div>
+		optionalTarget — 用来保存结果的目标对象。否则，实例化一个新的`Vector3`对象。（可选）<br>
+		</div>
+		<div>
+		返回一个向量，表示在世界空间物体的正Z轴方向。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.translateOnAxis&#39;)" target="_parent" title="Object3D.translateOnAxis" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Object3D&#39;)" title="Object3D" id="translateOnAxis">translateOnAxis</a> ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">axis</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">distance</a> )</h3>
+		<div>
+		axis -- 对象空间中的正规化（也称之为归一化）轴向量。<br>
+		distance -- 平移距离。
+		</div>
+		<div>
+		在对象空间中沿轴线平移一个物体。这里的轴假定为已正规化。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.rotateOnAxis&#39;)" target="_parent" title="Object3D.rotateOnAxis" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Object3D&#39;)" title="Object3D" id="rotateOnAxis">rotateOnAxis</a> ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">axis</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">angle</a> )</h3>
+		<div>
+		axis -- 对象空间中的正规化轴向量。<br>
+		angle -- 以弧度为单位的角度。
+		</div>
+		<div>
+		在对象空间中绕轴线旋转一个物体。这里的轴假定为已正规化。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Object3D.raycast&#39;)" target="_parent" title="Object3D.raycast" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="raycast">raycast</a> ( <a href="javascript:window.parent.goTo(&#39;Raycaster&#39;)" title="Raycaster">raycaster</a>, <a href="javascript:window.parent.goTo(&#39;数组(Array)&#39;)" title="数组(Array)">intersects</a> )</h3>
+		<div>
+		获取光线投射和该对象之间交点的抽象方法。子类（Subclasses）如 <a href="javascript:window.parent.goTo(&#39;网孔(Mesh)&#39;)" title="网孔(Mesh)">网孔(Mesh)</a>, <a href="javascript:window.parent.goTo(&#39;线条(Line)&#39;)" title="线条(Line)">线条(Line)</a>, 和 <a href="javascript:window.parent.goTo(&#39;点(Points)&#39;)" title="点(Points)">点(Points)</a> 实现了该方法以参与光线投射（raycasting）。
+		</div>
+
+		<h2>源代码</h2>
+
+		<a href="https://github.com/mrdoob/three.js/blob/master/src/core/Object3D.js" target="_blank">src/core/Object3D.js</a>
+	
+
+</body></html>

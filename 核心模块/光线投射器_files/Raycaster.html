@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)http://techbrood.com/threejs/docs/api/core/Raycaster.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<base href="../../">--><base href=".">
+		<script src="./list.js(1).下载"></script>
+		<script src="./page.js.下载"></script>
+		<link type="text/css" rel="stylesheet" href="./page.css">
+	<link href="./prettify.css" rel="stylesheet"><link href="./threejs.css" rel="stylesheet"><script src="./prettify.js.下载"></script></head>
+	<body>
+		<h1>光线投射器（Raycaster）</h1>
+
+		<div class="desc">
+		该类用来处理光线投射。光线投射主要用于物体选择、碰撞检测以及图像成像等方面。
+		</div>
+        
+        <p>光线投射方法是基于图像序列的直接体绘制（Volume Rendering）算法。<br>
+        从图像的每一个像素，沿固定方向（通常是视线方向）发射一条光线，光线穿越整个图像序列，<br>
+        并在这个过程中，对图像序列进行采样获取颜色信息，同时依据光线吸收模型将颜色值进行累加，直至光线穿越整个图像序列，最后得到的颜色值就是渲染图像的颜色。</p>
+        <p>光线投射的基本步骤可以分为如下4步：</p>
+        <ul>
+            <li>光线投射（Ray casting）：对最终图像的每个像素，都有一条光线穿过体素。在这一阶段，认为体素被接触并封闭于一个<strong>包围图元</strong>中是有帮助的：一个简单的几何对象（通常是一个长方体）用来与光线和体相交。</li>
+            <li>采样（Sampling）：沿着光线的射线部分位于体的内部，等距离的点采样被选择。通常体和表示光线的射线对齐，样本点通常被放于体素中间。因此，有必要对从它周围的体素的样本点的值进行插值。</li>
+            <li>着色（Shading）：对每个样本点，计算出梯度。这些代表体内局部表面的方向。然后给这些样本着色，也就是根据它们的表面方向和实际的光源添加阴影和颜色。</li>
+            <li>组合（Compositing）：在所有的样本点被着色后，沿着光线组合它们，得到该像素最终的颜色值。</li>
+        </ul>
+        <p>这个过程被不断重复。计算开始于视图中最远的样本点，并且结束于最近的一个。这个工作流水线会确保被遮挡的体部分不影响上述过程得到的结果像素。</p>
+        <p><img style="width:500px;" src="./raycasting.png"></p>
+        
+		<h2>代码示例</h2>
+		<code class=" prettyprint"><span class="kwd">var</span><span class="pln"> raycaster </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Raycaster</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> mouse </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector2</span><span class="pun">();</span><span class="pln">
+
+</span><span class="kwd">function</span><span class="pln"> onMouseMove</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">event</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+	</span><span class="com">// calculate mouse position in normalized device coordinates</span><span class="pln">
+	</span><span class="com">// (-1 to +1) for both components</span><span class="pln">
+
+	mouse</span><span class="pun">.</span><span class="pln">x </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> </span><span class="kwd">event</span><span class="pun">.</span><span class="pln">clientX </span><span class="pun">/</span><span class="pln"> window</span><span class="pun">.</span><span class="pln">innerWidth </span><span class="pun">)</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span><span class="pln">
+	mouse</span><span class="pun">.</span><span class="pln">y </span><span class="pun">=</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> </span><span class="kwd">event</span><span class="pun">.</span><span class="pln">clientY </span><span class="pun">/</span><span class="pln"> window</span><span class="pun">.</span><span class="pln">innerHeight </span><span class="pun">)</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">+</span><span class="pln"> </span><span class="lit">1</span><span class="pun">;</span><span class="pln">		
+
+</span><span class="pun">}</span><span class="pln">
+
+</span><span class="kwd">function</span><span class="pln"> render</span><span class="pun">()</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+	</span><span class="com">// update the picking ray with the camera and mouse position	</span><span class="pln">
+	raycaster</span><span class="pun">.</span><span class="pln">setFromCamera</span><span class="pun">(</span><span class="pln"> mouse</span><span class="pun">,</span><span class="pln"> camera </span><span class="pun">);</span><span class="pln">	
+
+	</span><span class="com">// calculate objects intersecting the picking ray</span><span class="pln">
+	</span><span class="kwd">var</span><span class="pln"> intersects </span><span class="pun">=</span><span class="pln"> raycaster</span><span class="pun">.</span><span class="pln">intersectObjects</span><span class="pun">(</span><span class="pln"> scene</span><span class="pun">.</span><span class="pln">children </span><span class="pun">);</span><span class="pln">
+
+	</span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="pln"> </span><span class="kwd">var</span><span class="pln"> i </span><span class="pun">=</span><span class="pln"> </span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i </span><span class="pun">&lt;</span><span class="pln"> intersects</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+
+		intersects</span><span class="pun">[</span><span class="pln"> i </span><span class="pun">].</span><span class="kwd">object</span><span class="pun">.</span><span class="pln">material</span><span class="pun">.</span><span class="pln">color</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="pln"> </span><span class="lit">0xff0000</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+	
+	</span><span class="pun">}</span><span class="pln">
+	
+	renderer</span><span class="pun">.</span><span class="pln">render</span><span class="pun">(</span><span class="pln"> scene</span><span class="pun">,</span><span class="pln"> camera </span><span class="pun">);</span><span class="pln">
+
+</span><span class="pun">}</span><span class="pln">
+
+window</span><span class="pun">.</span><span class="pln">addEventListener</span><span class="pun">(</span><span class="pln"> </span><span class="str">'mousemove'</span><span class="pun">,</span><span class="pln"> onMouseMove</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">false</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+
+window</span><span class="pun">.</span><span class="pln">requestAnimationFrame</span><span class="pun">(</span><span class="pln">render</span><span class="pun">);</span></code>
+		<div>例子: <a href="http://techbrood.com/threejs/examples/#webgl_interactive_cubes" target="_blank">Raycasting to a Mesh</a>, 
+			<a href="http://techbrood.com/threejs/examples/#webgl_interactive_cubes_ortho" target="_blank">Raycasting to a Mesh in using an OrthographicCamera</a>, 
+			<a href="http://techbrood.com/threejs/examples/#webgl_interactive_buffergeometry" target="_blank">Raycasting to a Mesh with BufferGeometry</a>, 
+			<a href="http://techbrood.com/threejs/examples/#webgl_interactive_lines" target="_blank">Raycasting to a Line</a>, 
+			<a href="http://techbrood.com/threejs/examples/#webgl_interactive_raycasting_points" target="_blank">Raycasting to Points</a>, 
+			<a href="http://techbrood.com/threejs/examples/#webgl_geometry_terrain_raycast" target="_blank">Terrain raycasting</a>, 
+			<a href="http://techbrood.com/threejs/examples/#webgl_octree_raycasting" target="_blank">Raycasting using an octree</a>,
+			<a href="http://techbrood.com/threejs/examples/#webgl_interactive_voxelpainter" target="_blank">Raycasting to paint voxels</a></div>
+
+
+		<div>
+		</div>
+
+
+		<h2>构造器（Constructor）</h2>
+
+		<h3>Raycaster( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">origin</a>, <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">direction</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">near</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">far</a> ) {</h3>
+		<div>
+		<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">origin</a> — 光线投射的起点向量。<br>
+		<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">direction</a> — 光线投射的方向向量，应该是被归一化的。<br>
+		<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">near</a> — 投射近点，用来限定返回比near要远的结果。near不能为负数。缺省为0。<br>
+		<a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">far</a> — 投射远点，用来限定返回比far要近的结果。far不能比near要小。缺省为无穷大。
+		</div>
+		<div>
+		这将创建一个新的光线投射器对象。<br>
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Raycaster.ray&#39;)" target="_parent" title="Raycaster.ray" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Ray&#39;)" title="Ray" id="ray">ray</a> </h3>
+		<div>
+		用于光线投射的射线。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Raycaster.near&#39;)" target="_parent" title="Raycaster.near" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;float&#39;)" title="float" id="near">near</a> </h3>
+		<div>
+		光线投射器的近点因子，这个值指示基于这个距离哪些对象可以被舍弃。<br>
+		这个值不能是负的，且应该小于far属性。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Raycaster.far&#39;)" target="_parent" title="Raycaster.far" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;float&#39;)" title="float" id="far">far</a> </h3>
+		<div>
+		光线投射器的远点因子，这个值指示基于这个距离哪些对象可以被舍弃。<br>
+		这个值不能是负的，且应该大于near属性。
+		</div>
+
+		<h3>.<a href="javascript:window.parent.goTo(&#39;float&#39;)" title="float">linePrecision</a></h3>
+		<div>
+		和 <a href="javascript:window.parent.goTo(&#39;线条(Line)&#39;)" title="线条(Line)">线条(Line)</a> 对象相交时的精度因子。 
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Raycaster.set&#39;)" target="_parent" title="Raycaster.set" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="set">set</a> ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">origin</a>, <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">direction</a> )</h3>
+		<div>
+		<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">origin</a> — 光线投射的起点向量。<br>
+		<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">direction</a> — 被归一化的光线投射的方向向量。
+		</div>
+		<div>
+		用一个新的起点和方向向量来更新射线（ray）。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Raycaster.setFromCamera&#39;)" target="_parent" title="Raycaster.setFromCamera" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="setFromCamera">setFromCamera</a> ( <a href="javascript:window.parent.goTo(&#39;Vector2&#39;)" title="Vector2">coords</a>, <a href="javascript:window.parent.goTo(&#39;Camera&#39;)" title="Camera">camera</a> )</h3>
+		<div>
+		<a href="javascript:window.parent.goTo(&#39;Vector2&#39;)" title="Vector2">coords</a> — 鼠标的二维坐标，在归一化的设备坐标(NDC)中，也就是X 和 Y 分量应该介于 -1 和 1 之间。<br>
+		<a href="javascript:window.parent.goTo(&#39;Camera&#39;)" title="Camera">camera</a> — 射线起点处的相机，即把射线起点设置在该相机位置处。
+		</div>
+		<div>
+		用一个新的原点和方向向量来更新射线（ray）。
+		</div>
+
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Raycaster.intersectObject&#39;)" target="_parent" title="Raycaster.intersectObject" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="intersectObject">intersectObject</a> ( <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">object</a>, <a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean">recursive</a> )</h3>
+		<div>
+		<p>
+		<a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">object</a> — 用来检测和射线相交的物体。<br>
+		<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean">recursive</a> — 如果为true，它还检查所有后代。否则只检查该对象本身。缺省值为false。
+		</p>
+		</div>
+		<div>
+		检查射线和物体之间的所有交叉点（包含或不包含后代）。交叉点返回按距离排序，最接近的为第一个。
+        返回一个交叉点对象数组。
+        <code class=" prettyprint"><span class="pun">[</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> distance</span><span class="pun">,</span><span class="pln"> point</span><span class="pun">,</span><span class="pln"> face</span><span class="pun">,</span><span class="pln"> faceIndex</span><span class="pun">,</span><span class="pln"> indices</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">object</span><span class="pln"> </span><span class="pun">},</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">]</span></code>
+        <p>
+        <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">distance</a> – 射线的起点到相交点的距离<br>
+        <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">point</a> – 在世界坐标中的交叉点<br>
+        <a href="javascript:window.parent.goTo(&#39;Face3&#39;)" title="Face3">face</a> – 相交的面<br>
+        <a href="javascript:window.parent.goTo(&#39;Integer&#39;)" title="Integer">faceIndex</a> – 相交的面的索引<br>
+        <a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array">indices</a> – 组成相交面的顶点索引<br>
+        <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D)&#39;)" title="3D对象(Object3D)">object</a> – 相交的对象
+    	</p>
+        <p>
+        当一个<a href="javascript:window.parent.goTo(&#39;网孔(Mesh)&#39;)" title="网孔(Mesh)">网孔(Mesh)</a>对象和一个<a href="javascript:window.parent.goTo(&#39;缓存几何模型(BufferGeometry)&#39;)" title="缓存几何模型(BufferGeometry)">缓存几何模型(BufferGeometry)</a>相交时，<strong>faceIndex</strong> 将是 <strong>undefined</strong>，并且 <strong>indices</strong> 将被设置；
+        而当一个<a href="javascript:window.parent.goTo(&#39;网孔(Mesh)&#39;)" title="网孔(Mesh)">网孔(Mesh)</a>对象和一个<a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">几何模型(Geometry)</a>相交时，<strong>indices</strong> 将是 <strong>undefined</strong>。 
+        </p>
+		<p>
+		当计算这个对象是否和射线相交时，<strong>Raycaster</strong> 把传递的对象委托给 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).raycast&#39;)" title="3D对象(Object3D).raycast">raycast</a> 方法。
+        这允许 <a href="javascript:window.parent.goTo(&#39;网孔(Mesh)&#39;)" title="网孔(Mesh)">meshes</a> 对于光线投射的响应可以不同于 <a href="javascript:window.parent.goTo(&#39;线条(Line)&#39;)" title="线条(Line)">lines</a> 和 <a href="javascript:window.parent.goTo(&#39;点(Points)&#39;)" title="点(Points)">pointclouds</a>。
+		</p>
+		<p>
+		*注意*，对于网格，面（faces）必须朝向射线原点，这样才能被检测到；通过背面的射线的交叉点将不被检测到。
+        为了光线投射一个对象的正反两面，你得设置 <a href="javascript:window.parent.goTo(&#39;Mesh.material&#39;)" title="Mesh.material">material</a> 的 <a href="javascript:window.parent.goTo(&#39;材料(Material).side&#39;)" title="材料(Material).side">side</a> 属性为 <strong>THREE.DoubleSide</strong>。
+		</p>
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Raycaster.intersectObjects&#39;)" target="_parent" title="Raycaster.intersectObjects" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="intersectObjects">intersectObjects</a> ( <a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array">objects</a>, <a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean">recursive</a> )</h3>
+		<div>
+		<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array">objects</a> — 检查是否和射线相交的一组对象。<br>
+		<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean">recursive</a> — 如果为true，还同时检查所有的后代对象。否则只检查对象本身。缺省值为 false。
+		</div>
+		<div>
+		检查射线和对象之间的所有交叉点（包含或不包含后代）。交叉点返回按距离排序，最接近的为第一个。返回结果类似于 <a href="javascript:window.parent.goTo(&#39;Raycaster.intersectObject&#39;)" title="Raycaster.intersectObject">.intersectObject</a>。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		<a href="https://github.com/mrdoob/three.js/blob/master/src/core/Raycaster.js" target="_blank">src/core/Raycaster.js</a>
+	
+
+</body></html>

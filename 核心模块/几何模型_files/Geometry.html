@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)http://techbrood.com/threejs/docs/api/core/Geometry.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<!--<base href="../../">--><base href=".">
+		<script src="./list.js(1).下载"></script>
+		<script src="./page.js.下载"></script>
+		<link type="text/css" rel="stylesheet" href="./page.css">
+	<link href="./prettify.css" rel="stylesheet"><link href="./threejs.css" rel="stylesheet"><script src="./prettify.js.下载"></script></head>
+	<body>
+		<h1>几何模型（Geometry）</h1>
+
+		<div class="desc">
+		这是所有几何模型的基类。<br>
+		一个Geometry存有用来描述一个三维模型的所有必要数据。
+		</div>
+
+
+		<h2>示例</h2>
+
+		<code class=" prettyprint"><span class="kwd">var</span><span class="pln"> geometry </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Geometry</span><span class="pun">();</span><span class="pln">
+
+geometry</span><span class="pun">.</span><span class="pln">vertices</span><span class="pun">.</span><span class="pln">push</span><span class="pun">(</span><span class="pln">
+	</span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector3</span><span class="pun">(</span><span class="pln"> </span><span class="pun">-</span><span class="lit">10</span><span class="pun">,</span><span class="pln">  </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">),</span><span class="pln">
+	</span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector3</span><span class="pun">(</span><span class="pln"> </span><span class="pun">-</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">),</span><span class="pln">
+	</span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector3</span><span class="pun">(</span><span class="pln">  </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">)</span><span class="pln">
+</span><span class="pun">);</span><span class="pln">
+
+geometry</span><span class="pun">.</span><span class="pln">faces</span><span class="pun">.</span><span class="pln">push</span><span class="pun">(</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Face3</span><span class="pun">(</span><span class="pln"> </span><span class="lit">0</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">2</span><span class="pln"> </span><span class="pun">)</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+
+geometry</span><span class="pun">.</span><span class="pln">computeBoundingSphere</span><span class="pun">();</span></code>
+
+		<h2>构造器（Constructor）</h2>
+
+
+		<h3>Geometry()</h3>
+		<div>
+		该构造器没有参数。
+		</div>
+
+
+		<h2>属性（Properties）</h2>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.id&#39;)" target="_parent" title="Geometry.id" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Integer&#39;)" title="Integer" id="id">id</a> </h3>
+		<div>
+		这个geometry实例的唯一标识。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.name&#39;)" target="_parent" title="Geometry.name" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;String&#39;)" title="String" id="name">name</a> </h3>
+		<div>
+		这个geometry的名称，缺省是一个空字符串。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.vertices&#39;)" target="_parent" title="Geometry.vertices" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="vertices">vertices</a> </h3>
+		<div>
+		<a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">vertices</a>数组。<br>
+		用来保存模型中所有顶点位置的数组。<br>
+		要更新该数组，<a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">Geometry.verticesNeedUpdate</a> 需要被设置为true。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.colors&#39;)" target="_parent" title="Geometry.colors" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="colors">colors</a> </h3>
+		<div>
+		顶点<a href="javascript:window.parent.goTo(&#39;颜色(Color)&#39;)" title="颜色(Color)">colors</a>数组，和上述vertices属性的个数和顺序一致。<br>
+		用于 <a href="javascript:window.parent.goTo(&#39;点(Points)&#39;)" title="点(Points)">点(Points)</a> 和 <a href="javascript:window.parent.goTo(&#39;线条(Line)&#39;)" title="线条(Line)">线条(Line)</a>。<br>
+		<a href="javascript:window.parent.goTo(&#39;网孔(Mesh)&#39;)" title="网孔(Mesh)">Meshes</a> 使用嵌在表面的每面用的顶点颜色。<br>
+		要更新该数组，<a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">Geometry.colorsNeedUpdate</a> 需要被设置为true。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.faces&#39;)" target="_parent" title="Geometry.faces" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="faces">faces</a> </h3>
+		<div>
+		<a href="javascript:window.parent.goTo(&#39;三角面(Face3)&#39;)" title="三角面(Face3)">triangles</a>数组。<br>
+		三角面数组，用来描述模型中的每个顶点是如何相互连接的。<br>
+        要更新该数组，<a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">Geometry.elementsNeedUpdate</a> 需要被设置为true。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.faceVertexUvs&#39;)" target="_parent" title="Geometry.faceVertexUvs" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="faceVertexUvs">faceVertexUvs</a> </h3>
+		<div>
+		面 <a href="javascript:window.parent.goTo(&#39;UV&#39;)" title="UV">UV</a> 层数组。<br>
+		每个UV层都是一个 <a href="javascript:window.parent.goTo(&#39;UV&#39;)" title="UV">UV</a>s 数组，和面上的顶点数量和顺序一致。<br>
+		要更新该数组，<a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">Geometry.uvsNeedUpdate</a> 需要被设置为true。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.morphTargets&#39;)" target="_parent" title="Geometry.morphTargets" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="morphTargets">morphTargets</a> </h3>
+		<div>
+		变形目标数组。每个变形目标是一个具备如下形式的JavaScript对象：
+		<code class=" prettyprint"><span class="pun">{</span><span class="pln"> name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"targetName"</span><span class="pun">,</span><span class="pln"> vertices</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector3</span><span class="pun">(),</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">}</span></code>
+		变形顶点数和主顶点的数量和顺序一致。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.morphNormals&#39;)" target="_parent" title="Geometry.morphNormals" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="morphNormals">morphNormals</a> </h3>
+		<div>
+		变形法向量数组。变形法向量和变形目标的数据结构类似：
+		<code class=" prettyprint"><span class="pln">morphNormal </span><span class="pun">=</span><span class="pln"> </span><span class="pun">{</span><span class="pln"> name</span><span class="pun">:</span><span class="pln"> </span><span class="str">"NormalName"</span><span class="pun">,</span><span class="pln"> normals</span><span class="pun">:</span><span class="pln"> </span><span class="pun">[</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector3</span><span class="pun">(),</span><span class="pln"> </span><span class="pun">...</span><span class="pln"> </span><span class="pun">]</span><span class="pln"> </span><span class="pun">}</span></code>
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.skinWeights&#39;)" target="_parent" title="Geometry.skinWeights" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="skinWeights">skinWeights</a> </h3>
+		<div>
+		蒙皮权重数组。当使用 <a href="javascript:window.parent.goTo(&#39;蒙皮网孔(SkinnedMesh)&#39;)" title="蒙皮网孔(SkinnedMesh)">蒙皮网孔(SkinnedMesh)</a>时，每个顶点最多可以有4个<a href="javascript:window.parent.goTo(&#39;骨骼(Bone)&#39;)" title="骨骼(Bone)">bones</a>会对它产生影响。
+		skinWeights 属性是一组权重值，对应于模型中的顶点顺序。比如，第一个 skinWeight 将对应于模型（geometry）中的第一个顶点（vertex）。
+		由于每个顶点可以被4个bones所修改，我们用 <a href="javascript:window.parent.goTo(&#39;Vector4&#39;)" title="Vector4">Vector4</a> 来表示该顶点的蒙皮权重（skin weights）。
+		</div>
+		<div>
+        向量的值通常在1到0之间。例如，当设置为0的骨骼变换（bone transformation）不起作用。
+        当设置为0.5时，将有50%影响。当设置为100%，它将有100%影响。如果只有1个骨骼与顶点关联，那么你只需要关心向量的第一个元素，其余的可以被忽略并设置为0。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.skinIndices&#39;)" target="_parent" title="Geometry.skinIndices" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Array&#39;)" title="Array" id="skinIndices">skinIndices</a> </h3>
+		<div>
+		就和 skinWeights 属性一样，skinIndices 的值和模型的顶点相匹配。
+		每个顶点可以有最多4个骨骼与之相关，所以如果你看第1个顶点，和第1个skinIndex，将得到与之对应的骨骼。
+        比如第一个顶点值为 <strong>( 10.05, 30.10, 12.12 )</strong>，然后第一个蒙皮索引的值可能是<strong>( 10, 2, 0, 0 )</strong>。
+        第一个蒙皮权重值可能是 <strong>( 0.8, 0.2, 0, 0 )</strong>。那么实际上对于第1个顶点，有两个bone权重会起作用，第一个为
+		<strong>mesh.bones[10]</strong> 并应用80%的权重，第二个是<strong>skeleton.bones[2]</strong>应用20%的权重。其余2个bone的值权重为0，不起作用。
+		</div>
+		<div>
+		在代码中，另一个例子可能看起来像这样：
+		<code class=" prettyprint"><span class="com">// e.g.</span><span class="pln">
+geometry</span><span class="pun">.</span><span class="pln">skinIndices</span><span class="pun">[</span><span class="lit">15</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector4</span><span class="pun">(</span><span class="pln">   </span><span class="lit">0</span><span class="pun">,</span><span class="pln">   </span><span class="lit">5</span><span class="pun">,</span><span class="pln">   </span><span class="lit">9</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+geometry</span><span class="pun">.</span><span class="pln">skinWeights</span><span class="pun">[</span><span class="lit">15</span><span class="pun">]</span><span class="pln"> </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector4</span><span class="pun">(</span><span class="pln"> </span><span class="lit">0.2</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.5</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.3</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+
+</span><span class="com">// 与下列顶点相对应</span><span class="pln">
+geometry</span><span class="pun">.</span><span class="pln">vertices</span><span class="pun">[</span><span class="lit">15</span><span class="pun">];</span><span class="pln">
+
+</span><span class="com">// 这些bones会像下面这样使用：</span><span class="pln">
+skeleton</span><span class="pun">.</span><span class="pln">bones</span><span class="pun">[</span><span class="lit">0</span><span class="pun">];</span><span class="pln"> </span><span class="com">// weight of 0.2</span><span class="pln">
+skeleton</span><span class="pun">.</span><span class="pln">bones</span><span class="pun">[</span><span class="lit">5</span><span class="pun">];</span><span class="pln"> </span><span class="com">// weight of 0.5</span><span class="pln">
+skeleton</span><span class="pun">.</span><span class="pln">bones</span><span class="pun">[</span><span class="lit">9</span><span class="pun">];</span><span class="pln"> </span><span class="com">// weight of 0.3</span><span class="pln">
+skeleton</span><span class="pun">.</span><span class="pln">bones</span><span class="pun">[</span><span class="lit">10</span><span class="pun">];</span><span class="pln"> </span><span class="com">// weight of 0</span></code>
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.boundingBox&#39;)" target="_parent" title="Geometry.boundingBox" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Object&#39;)" title="Object" id="boundingBox">boundingBox</a> </h3>
+		<div>
+		包围盒（Bounding box）。
+		<code class=" prettyprint"><span class="pun">{</span><span class="pln"> min</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector3</span><span class="pun">(),</span><span class="pln"> max</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector3</span><span class="pun">()</span><span class="pln"> </span><span class="pun">}</span></code>
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.boundingSphere&#39;)" target="_parent" title="Geometry.boundingSphere" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Object&#39;)" title="Object" id="boundingSphere">boundingSphere</a> </h3>
+		<div>
+		包围球（Bounding sphere）。
+		<code class=" prettyprint"><span class="pun">{</span><span class="pln"> radius</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">float</span><span class="pln"> </span><span class="pun">}</span></code>
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.verticesNeedUpdate&#39;)" target="_parent" title="Geometry.verticesNeedUpdate" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="verticesNeedUpdate">verticesNeedUpdate</a> </h3>
+		<div>
+		如果顶点数组被更新则设置为 <strong>true</strong> 。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.elementsNeedUpdate&#39;)" target="_parent" title="Geometry.elementsNeedUpdate" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="elementsNeedUpdate">elementsNeedUpdate</a> </h3>
+		<div>
+		如果面数组被更新则设置为 <strong>true</strong> 。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.uvsNeedUpdate&#39;)" target="_parent" title="Geometry.uvsNeedUpdate" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="uvsNeedUpdate">uvsNeedUpdate</a> </h3>
+		<div>
+		如果UV数组被更新则设置为 <strong>true</strong> 。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.normalsNeedUpdate&#39;)" target="_parent" title="Geometry.normalsNeedUpdate" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="normalsNeedUpdate">normalsNeedUpdate</a> </h3>
+		<div>
+		如果法向量数组被更新则设置为 <strong>true</strong> 。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.colorsNeedUpdate&#39;)" target="_parent" title="Geometry.colorsNeedUpdate" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="colorsNeedUpdate">colorsNeedUpdate</a> </h3>
+		<div>
+		如果颜色数组或者一个三角面颜色被更新则设置为 <strong>true</strong> 。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.groupsNeedUpdate&#39;)" target="_parent" title="Geometry.groupsNeedUpdate" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="groupsNeedUpdate">groupsNeedUpdate</a> </h3>
+		<div>
+		如果一个三角面材料索引（materialIndex）被更新则设置为 <strong>true</strong> 。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.lineDistancesNeedUpdate&#39;)" target="_parent" title="Geometry.lineDistancesNeedUpdate" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean" id="lineDistancesNeedUpdate">lineDistancesNeedUpdate</a> </h3>
+		<div>
+		如果线间距数组被更新则设置为 <strong>true</strong> 。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.lineDistances&#39;)" target="_parent" title="Geometry.lineDistances" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;array&#39;)" title="array" id="lineDistances">lineDistances</a> </h3>
+		<div>
+        一个包含线条模型(Line geometry)顶点之间距离的数组。
+        LinePieces / LineDashedMaterial 需要使用该属性来正确渲染。
+        线的间距也可以由 computeLineDistances 方法所生成。
+		</div>
+
+		<h2>方法（Methods）</h2>
+
+		<h3>该类可以使用 <a href="javascript:window.parent.goTo(&#39;事件分发器(EventDispatcher)&#39;)" title="事件分发器(EventDispatcher)">EventDispatcher</a> 方法。</h3>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.applyMatrix&#39;)" target="_parent" title="Geometry.applyMatrix" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="applyMatrix">applyMatrix</a> ( <a href="javascript:window.parent.goTo(&#39;Matrix4&#39;)" title="Matrix4">matrix</a> )</h3>
+		<div>
+		给顶点坐标施加矩阵变换。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.center&#39;)" target="_parent" title="Geometry.center" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="center">center</a>  ()</h3>
+		<div>
+		使基于包围盒的几何模型居中。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.rotateX&#39;)" target="_parent" title="Geometry.rotateX" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Geometry&#39;)" title="Geometry" id="rotateX">rotateX</a>  ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">radians</a> )</h3>
+		<div>
+		使模型绕X轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).rotation&#39;)" title="3D对象(Object3D).rotation">3D对象(Object3D).rotation</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.rotateY&#39;)" target="_parent" title="Geometry.rotateY" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Geometry&#39;)" title="Geometry" id="rotateY">rotateY</a>  ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">radians</a> )</h3>
+		<div>
+		使模型绕Y轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).rotation&#39;)" title="3D对象(Object3D).rotation">3D对象(Object3D).rotation</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.rotateZ&#39;)" target="_parent" title="Geometry.rotateZ" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Geometry&#39;)" title="Geometry" id="rotateZ">rotateZ</a>  ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">radians</a> )</h3>
+		<div>
+		使模型绕Z轴旋转。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).rotation&#39;)" title="3D对象(Object3D).rotation">3D对象(Object3D).rotation</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.translate&#39;)" target="_parent" title="Geometry.translate" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Geometry&#39;)" title="Geometry" id="translate">translate</a>  ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">x</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">y</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">z</a> )</h3>
+		<div>
+		平移模型。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).position&#39;)" title="3D对象(Object3D).position">3D对象(Object3D).position</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.scale&#39;)" target="_parent" title="Geometry.scale" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Geometry&#39;)" title="Geometry" id="scale">scale</a>  ( <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">x</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">y</a>, <a href="javascript:window.parent.goTo(&#39;Float&#39;)" title="Float">z</a> )</h3>
+		<div>
+		缩放模型。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).scale&#39;)" title="3D对象(Object3D).scale">3D对象(Object3D).scale</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.lookAt&#39;)" target="_parent" title="Geometry.lookAt" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Geometry&#39;)" title="Geometry" id="lookAt">lookAt</a>  ( <a href="javascript:window.parent.goTo(&#39;Vector3&#39;)" title="Vector3">vector</a> )</h3>
+		<div>
+		vector - 一个观察点世界向量<br>
+		</div>
+		<div>
+		旋转模型以面对观察点。这通常做为一次性操作，而不是在一个循环中。对于典型的实时网孔模型，使用 <a href="javascript:window.parent.goTo(&#39;3D对象(Object3D).lookAt&#39;)" title="3D对象(Object3D).lookAt">3D对象(Object3D).lookAt</a>。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.computeFaceNormals&#39;)" target="_parent" title="Geometry.computeFaceNormals" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="computeFaceNormals">computeFaceNormals</a> ()</h3>
+		<div>
+		计算面法向量。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.computeVertexNormals&#39;)" target="_parent" title="Geometry.computeVertexNormals" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="computeVertexNormals">computeVertexNormals</a> ( <a href="javascript:window.parent.goTo(&#39;Boolean&#39;)" title="Boolean">areaWeighted</a> )</h3>
+		<div>
+		areaWeighted - 如果为true，则每个面法线对顶点法线的贡献由该面的面积所确定。默认为true。
+		</div>
+		<div>
+		通过平均面法线来计算顶点法线。<br>
+		面法线必须已存在（预先计算好）。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.computeMorphNormals&#39;)" target="_parent" title="Geometry.computeMorphNormals" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="computeMorphNormals">computeMorphNormals</a> ()</h3>
+		<div>
+		计算变形法线。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.computeBoundingBox&#39;)" target="_parent" title="Geometry.computeBoundingBox" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="computeBoundingBox">computeBoundingBox</a> ()</h3>
+		<div>
+		计算该模型的包围盒，更新 <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">Geometry.boundingBox</a> 属性。<br>
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.computeBoundingSphere&#39;)" target="_parent" title="Geometry.computeBoundingSphere" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="computeBoundingSphere">computeBoundingSphere</a> ()</h3>
+		<div>
+		计算该模型的包围球，更新 <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">Geometry.boundingSphere</a> 属性。<br>
+		</div>
+
+		<div>包围盒和包围球都不会被默认计算，需要显式计算，否则它们为 <strong>null</strong>。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.merge&#39;)" target="_parent" title="Geometry.merge" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="merge">merge</a> ( <a href="javascript:window.parent.goTo(&#39;几何模型(Geometry)&#39;)" title="几何模型(Geometry)">geometry</a>, <a href="javascript:window.parent.goTo(&#39;Matrix4&#39;)" title="Matrix4">matrix</a>, <a href="javascript:window.parent.goTo(&#39;Integer&#39;)" title="Integer">materialIndexOffset</a> )</h3>
+		<div>合并几何模型。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.mergeVertices&#39;)" target="_parent" title="Geometry.mergeVertices" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="mergeVertices">mergeVertices</a> ()</h3>
+		<div>
+		使用哈希表检查重复的顶点。<br>
+		重复的顶点被删除，同时面的vertices属性被更新。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.normalize&#39;)" target="_parent" title="Geometry.normalize" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="normalize">normalize</a> ()</h3>
+		<div>
+		正规化模型。<br>
+		使模型居中，并且有一个半径等于1的包围球。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.clone&#39;)" target="_parent" title="Geometry.clone" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;Geometry&#39;)" title="Geometry" id="clone">clone</a> ()</h3>
+		<div>
+		创建一个新的几何模型克隆。
+		</div>
+		
+		<div>此方法只复制顶点、面和UVs。它不复制模型的任何其他属性。</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.dispose&#39;)" target="_parent" title="Geometry.dispose" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="dispose">dispose</a> ()</h3>
+		<div>
+		从内存中删除对象。<br>
+		当你删除一个模型时，别忘了调用这个方法，否则可能会导致内存泄漏。
+		</div>
+
+		<h3><a href="javascript:window.parent.goTo(&#39;Geometry.computeLineDistances&#39;)" target="_parent" title="Geometry.computeLineDistances" class="permalink">#</a> .<a href="javascript:window.parent.goTo(&#39;null&#39;)" title="null" id="computeLineDistances">computeLineDistances</a> ()</h3>
+		<div>
+		线条模型（Line Geometry）的顶点之间的距离计算。
+		</div>
+
+
+		<h2>源代码</h2>
+
+		<a href="https://github.com/mrdoob/three.js/blob/master/src/core/Geometry.js" target="_blank">src/core/Geometry.js</a>
+	
+
+</body></html>
